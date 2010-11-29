@@ -24,6 +24,9 @@
             <widgetFile>
               <name>releasenotes.txt</name>
             </widgetFile>
+            <widgetFile>
+              <name>images/external-link.png</name>
+            </widgetFile>
           </widgetFiles>
         </component>
       </components>
