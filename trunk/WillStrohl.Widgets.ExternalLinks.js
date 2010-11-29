@@ -27,6 +27,15 @@ DEALINGS IN THE SOFTWARE.
 ''' [wstrohl] - 20101129 - Created
 ''' </history>
 ''' -----------------------------------------------------------------------------
+
+EXAMPLE:
+<object id="wgtExternalLinks" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.ExternalLinks" declare="declare">
+</object>
+
+<object id="wgtExternalLinks" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.ExternalLinks" declare="declare">
+	<param name="altText" value="Opens to New Site" />
+	<param name="image" value="/images/edit.gif" />
+</object>
 */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,7 +57,6 @@ WillStrohl.Widgets.ExternalLinks.prototype =
     render:
         function()
         {
-			alert('widget initialized');
 			
 			/* set-up parameters */
             var params = this._widget.childNodes;
@@ -56,38 +64,45 @@ WillStrohl.Widgets.ExternalLinks.prototype =
             {
 				/* default parameters */
 				var altText = 'external link';
-				var customFilter = 'a';
+				//var customFilter = 'a:not(:has(img))';
+				//var customFilter = 'a:not(:has(> img:first-child))';
                 var image = '/Resources/Widgets/User/WillStrohl/images/external-link.png';
 				
 				/* parse parameters */
                 for (var p = 0; p < params.length; p++)
                 {
-                    try
+					try
                     {
-						if (params.count > 0){
-							var paramName = params[p].name.toLowerCase();
-							switch (paramName)
-							{
-								case "alttext": altText = params[p].value; break;
-								case "customfilter": customFilter = params[p].value; break;
-								case "image": text = params[p].value; break;
-							}
+						var paramName = params[p].name.toLowerCase();
+						switch (paramName)
+						{
+							case "alttext": altText = params[p].value; break;
+							//case "customfilter": customFilter = params[p].value; break;
+							case "image": image = params[p].value; break;
 						}
                     }
                     catch (e)
                     {
-						alert('Error: ' + e);
+						//alert('An Error Occurred: ' + e);
                     }
                 }
             }
 			
-			alert('before widget code');
-            
-			jQuery(customFilter).filter(function() {
-				return this.hostname && this.hostname !== location.hostname;
-			}).append(' <img src="' + image + '" alt="' + altText + '" />');
+			try
+			{
+				jQuery('a').filter(function() {
+					return this.hostname && this.hostname !== location.hostname;
+				}).each(function(index, Element) {
+					if (jQuery(this).has('img').length == 0) {
+						jQuery(this).append(' <img src="' + image + '" alt="' + altText + '" />');
+					}
+				});
+			}
+			catch (e)
+			{
+				//alert('An Error Occurred: ' + e);
+			}
 			
-			alert('widget complete');
         }
     // END: render
 }
