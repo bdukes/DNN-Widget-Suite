@@ -15,6 +15,18 @@ TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONIN
 THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE.
+
+''' -----------------------------------------------------------------------------
+''' <summary>
+''' This widget script adds an image to external links found in the page.
+''' </summary>
+''' <version>01.00.00</version>
+''' <remarks>
+''' </remarks>
+''' <history>
+''' [wstrohl] - 20101129 - Created
+''' </history>
+''' -----------------------------------------------------------------------------
 */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,8 +36,6 @@ DEALINGS IN THE SOFTWARE.
 // BEGIN: Namespace management
 Type.registerNamespace("WillStrohl.Widgets");
 // END: Namespace management
-
-
 
 WillStrohl.Widgets.ExternalLinks = function(widget)
 {
@@ -38,38 +48,48 @@ WillStrohl.Widgets.ExternalLinks.prototype =
     render:
         function()
         {
+			alert('widget initialized');
+			
+			/* set-up parameters */
             var params = this._widget.childNodes;
             if (params != null)
             {
-                var image = "/Resources/Widgets/User/WillStrohl/images/external-link.gif";
+				/* default parameters */
+				var altText = 'external link';
+				var customFilter = 'a';
+                var image = '/Resources/Widgets/User/WillStrohl/images/external-link.png';
+				
+				/* parse parameters */
                 for (var p = 0; p < params.length; p++)
                 {
                     try
                     {
-                        var paramName = params[p].name.toLowerCase();
-                        switch (paramName)
-                        {
-                            case "image": text = params[p].value; break;
-                        }
+						if (params.count > 0){
+							var paramName = params[p].name.toLowerCase();
+							switch (paramName)
+							{
+								case "alttext": altText = params[p].value; break;
+								case "customfilter": customFilter = params[p].value; break;
+								case "image": text = params[p].value; break;
+							}
+						}
                     }
                     catch (e)
                     {
+						alert('Error: ' + e);
                     }
                 }
             }
-            var div = document.createElement("div");
-            div.setAttribute("style", "width:100px;height:100px;border:solid 4px red");
-            div.innerHTML = text;
-            $addHandler(div, "click", WillStrohl.Widgets.ExternalLinks.clickHandler);
-            WillStrohl.Widgets.ExternalLinks.callBaseMethod(this, "render", [div]);
+			
+			alert('before widget code');
+            
+			jQuery(customFilter).filter(function() {
+				return this.hostname && this.hostname !== location.hostname;
+			}).append(' <img src="' + image + '" alt="' + altText + '" />');
+			
+			alert('widget complete');
         }
     // END: render
-}
-
-WillStrohl.Widgets.ExternalLinks.clickHandler = function(sender)
-{
-    var clickedObject = sender.target;
-    alert("The widget with ID=" + clickedObject.id + " contains text \"" + clickedObject.innerHTML + "\"");
 }
 
 WillStrohl.Widgets.ExternalLinks.inheritsFrom(DotNetNuke.UI.WebControls.Widgets.BaseWidget);
