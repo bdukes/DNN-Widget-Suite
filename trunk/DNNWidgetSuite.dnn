@@ -1,7 +1,7 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
     <package name="WillStrohl.WidgetSuite" type="Widget" version="1.0.0">
-      <friendlyName>External Links Widget</friendlyName>
+      <friendlyName>DNN Widget Suite</friendlyName>
       <description>This widget will parse a page in DotNetNuke, and add an image to indicate that a link points to an external website.</description>
       <owner>
         <name>Will Strohl</name>
