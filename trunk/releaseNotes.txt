@@ -1,2 +1,2 @@
-There are no release notes for this widget.
+This release adds a missing Facebook image, and adds some optimizations to the SocialBookmarks widget.<br /><br />
 For support, use the widget website, at <a href="http://dnnwidgets.codeplex.com" target="_blank">Widget Suite for DotNetNuke</a>.
