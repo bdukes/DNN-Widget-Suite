@@ -1,0 +1,41 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="WillStrohl.WidgetSuite" type="Widget" version="1.0.0">
+      <friendlyName>DNN Widget Suite</friendlyName>
+      <description>This is a suite of widgets that allows you to perform various functions within your DotNetNuke website, client-side, using the built-in widget framework.</description>
+      <owner>
+        <name>Will Strohl</name>
+        <organization>Will Strohl</organization>
+        <url>http://www.WillStrohl.com</url>
+        <email>will.strohl@gmail.com</email>
+      </owner>
+      <license src="license.txt" />
+      <releaseNotes src="releasenotes.txt" />
+      <components>
+        <component type="Widget">
+          <widgetFiles>
+            <basePath>WillStrohl</basePath>
+            <widgetFile>
+              <name>WillStrohl.Widgets.SocialBookmarkWidget.js</name>
+            </widgetFile>
+            <widgetFile>
+              <name>WillStrohl.Widgets.TechnoratiInfoWidget.js</name>
+            </widgetFile>
+            <widgetFile>
+              <name>WillStrohl.Widgets.ExternalLinks.js</name>
+            </widgetFile>
+            <widgetFile>
+              <name>license.txt</name>
+            </widgetFile>
+            <widgetFile>
+              <name>releasenotes.txt</name>
+            </widgetFile>
+            <widgetFile>
+              <name>images/external-link.png</name>
+            </widgetFile>
+          </widgetFiles>
+        </component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>

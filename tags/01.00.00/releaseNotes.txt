@@ -1,0 +1,2 @@
+There are no release notes for this widget.
+For support, use the widget website, at <a href="http://dnnwidgets.codeplex.com" target="_blank">Widget Suite for DotNetNuke</a>.
