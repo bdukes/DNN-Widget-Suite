@@ -1,4 +1,6 @@
 /*
+Will Strohl - http://www.WillStrohl.com
+Support - http://dnnwidgets.codeplex.com
 Copyright (c) 2010, Will Strohl
 All rights reserved.
 
