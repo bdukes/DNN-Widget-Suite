@@ -57,7 +57,8 @@ WillStrohl.Widgets.SocialBookmarkWidget.prototype =
                 var sbFacebook = 'false';
                 var sbStumbleUpon = 'false';
                 for (var p = 0; p < params.length; p++) {
-                    try {
+                    try 
+					{
                         var paramName = params[p].name.toLowerCase();
                         switch (paramName) {
                             case 'baseurl': baseUrl = params[p].value; break;
@@ -72,159 +73,166 @@ WillStrohl.Widgets.SocialBookmarkWidget.prototype =
                         }
                     }
                     catch (e) {
+						//alert('An Error Occurred: ' + e);
                     }
                 }
             }
 			
-			if (baseUrl == '') baseUrl = location.hostname;
+			try
+			{
+				if (baseUrl == '') baseUrl = location.hostname;
 
-            if (baseUrl != '') {
-                if (baseUrl.indexOf('http') == -1) {
-					var httpHost = (("https:" == document.location.protocol) ? 'https:/' : 'http:/');
-                    baseUrl = httpHost + '/' + baseUrl;
-                }
-                baseUrl = baseUrl + '/Resources/Widgets/User/WillStrohl/';
+				if (baseUrl != '') {
+					if (baseUrl.indexOf('http') == -1) {
+						var httpHost = (("https:" == document.location.protocol) ? 'https:/' : 'http:/');
+						baseUrl = httpHost + '/' + baseUrl;
+					}
+					baseUrl = baseUrl + '/Resources/Widgets/User/WillStrohl/';
 
-                var div = document.createElement('div');
-                div.setAttribute('class', 'WillStrohlSBWrapper');
+					var div = document.createElement('div');
+					div.setAttribute('class', 'WillStrohlSBWrapper');
 
-                /*
-                
-                DIGG
-                
-                */
+					/*
+					
+					DIGG
+					
+					*/
 
-                if (sbDigg == 'true') {
-                    div.innerHTML = div.innerHTML + '&nbsp;';
+					if (sbDigg == 'true') {
+						div.innerHTML = div.innerHTML + '&nbsp;';
 
-                    var aDigg = document.createElement('a');
-                    aDigg.setAttribute('href', 'http://digg.com/submit?url=' + document.location + '&title=' + document.title);
-                    aDigg.setAttribute('target', '_blank');
+						var aDigg = document.createElement('a');
+						aDigg.setAttribute('href', 'http://digg.com/submit?url=' + document.location + '&title=' + document.title);
+						aDigg.setAttribute('target', '_blank');
 
-                    var imgDigg = document.createElement('img');
-                    imgDigg.setAttribute('src', 'http://digg.com/img/badges/16x16-digg-guy.gif');
-                    imgDigg.setAttribute('alt', 'Digg this');
-                    imgDigg.setAttribute('border', '0');
-                    imgDigg.setAttribute('style', 'width:16px;width:16px;');
-                    imgDigg.setAttribute('class', 'WillStrohlSBImage');
-                    aDigg.appendChild(imgDigg);
+						var imgDigg = document.createElement('img');
+						imgDigg.setAttribute('src', 'http://digg.com/img/badges/16x16-digg-guy.gif');
+						imgDigg.setAttribute('alt', 'Digg this');
+						imgDigg.setAttribute('border', '0');
+						imgDigg.setAttribute('style', 'width:16px;width:16px;');
+						imgDigg.setAttribute('class', 'WillStrohlSBImage');
+						aDigg.appendChild(imgDigg);
 
-                    div.appendChild(aDigg);
-                    div.innerHTML = div.innerHTML + '&nbsp;';
-                }
+						div.appendChild(aDigg);
+						div.innerHTML = div.innerHTML + '&nbsp;';
+					}
 
-                /*
-                
-                DELICIOUS
-                
-                */
+					/*
+					
+					DELICIOUS
+					
+					*/
 
-                if (sbDelicious == 'true') {
-                    // <img src="http://static.delicious.com/img/delicious.small.gif" height="10" width="10" alt="Delicious" />
-                    // <a href="http://delicious.com/save" onclick="window.open('http://delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;"> Bookmark this on Delicious</a>
-                    div.innerHTML = div.innerHTML + '&nbsp;';
+					if (sbDelicious == 'true') {
+						// <img src="http://static.delicious.com/img/delicious.small.gif" height="10" width="10" alt="Delicious" />
+						// <a href="http://delicious.com/save" onclick="window.open('http://delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;"> Bookmark this on Delicious</a>
+						div.innerHTML = div.innerHTML + '&nbsp;';
 
-                    var aDelicious = document.createElement('a');
-                    aDelicious.setAttribute('href', 'http://delicious.com/save');
-                    aDelicious.setAttribute('onclick', 'window.open(\'http://delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url=\'+encodeURIComponent(location.href)+\'&amp;title=\'+encodeURIComponent(document.title), \'delicious\',\'toolbar=no,width=550,height=550\'); return false;');
+						var aDelicious = document.createElement('a');
+						aDelicious.setAttribute('href', 'http://delicious.com/save');
+						aDelicious.setAttribute('onclick', 'window.open(\'http://delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url=\'+encodeURIComponent(location.href)+\'&amp;title=\'+encodeURIComponent(document.title), \'delicious\',\'toolbar=no,width=550,height=550\'); return false;');
 
-                    var imgDelicious = document.createElement('img');
-                    imgDelicious.setAttribute('src', 'http://static.delicious.com/img/delicious.small.gif');
-                    imgDelicious.setAttribute('alt', 'Delicious');
-                    imgDelicious.setAttribute('border', '0');
-                    imgDelicious.setAttribute('style', 'width:10px;height:10px;border:none;');
-                    imgDelicious.setAttribute('class', 'WillStrohlSBImage');
-                    aDelicious.appendChild(imgDelicious);
+						var imgDelicious = document.createElement('img');
+						imgDelicious.setAttribute('src', 'http://static.delicious.com/img/delicious.small.gif');
+						imgDelicious.setAttribute('alt', 'Delicious');
+						imgDelicious.setAttribute('border', '0');
+						imgDelicious.setAttribute('style', 'width:10px;height:10px;border:none;');
+						imgDelicious.setAttribute('class', 'WillStrohlSBImage');
+						aDelicious.appendChild(imgDelicious);
 
-                    div.appendChild(aDelicious);
-                    div.innerHTML = div.innerHTML + '&nbsp;';
-                }
+						div.appendChild(aDelicious);
+						div.innerHTML = div.innerHTML + '&nbsp;';
+					}
 
-                /*
-                
-                DOTNETKICKS
-                
-                */
+					/*
+					
+					DOTNETKICKS
+					
+					*/
 
-                if (sbDotNetKicks == 'true') {
-                    div.innerHTML = div.innerHTML + '&nbsp;';
+					if (sbDotNetKicks == 'true') {
+						div.innerHTML = div.innerHTML + '&nbsp;';
 
-                    var aDnk = document.createElement('a');
-                    aDnk.setAttribute('href', 'http://www.dotnetkicks.com/kick/?url=' + document.location + '&title=' + document.title + '&r=Will+Strohl');
-                    aDnk.setAttribute('target', '_blank');
+						var aDnk = document.createElement('a');
+						aDnk.setAttribute('href', 'http://www.dotnetkicks.com/kick/?url=' + document.location + '&title=' + document.title + '&r=Will+Strohl');
+						aDnk.setAttribute('target', '_blank');
 
-                    var imgDnk = document.createElement('img');
-                    imgDnk.setAttribute('src', 'http://www.dotnetkicks.com/Services/Images/KickItImageGenerator.ashx?url=' + document.location);
-                    imgDnk.setAttribute('alt', 'DotNetKicks');
-                    imgDnk.setAttribute('border', '0');
-                    imgDnk.setAttribute('style', 'border:none;');
-                    imgDnk.setAttribute('class', 'WillStrohlSBImage');
-                    aDnk.appendChild(imgDnk);
+						var imgDnk = document.createElement('img');
+						imgDnk.setAttribute('src', 'http://www.dotnetkicks.com/Services/Images/KickItImageGenerator.ashx?url=' + document.location);
+						imgDnk.setAttribute('alt', 'DotNetKicks');
+						imgDnk.setAttribute('border', '0');
+						imgDnk.setAttribute('style', 'border:none;');
+						imgDnk.setAttribute('class', 'WillStrohlSBImage');
+						aDnk.appendChild(imgDnk);
 
-                    div.appendChild(aDnk);
-                    div.innerHTML = div.innerHTML + '&nbsp;';
-                }
+						div.appendChild(aDnk);
+						div.innerHTML = div.innerHTML + '&nbsp;';
+					}
 
-                /*
-                
-                FACEBOOK
-                
-                */
+					/*
+					
+					FACEBOOK
+					
+					*/
 
-                if (sbFacebook == 'true') {
-                    div.innerHTML = div.innerHTML + '&nbsp;';
+					if (sbFacebook == 'true') {
+						div.innerHTML = div.innerHTML + '&nbsp;';
 
-                    var aFacebook = document.createElement('a');
-                    aFacebook.setAttribute('href', 'http://www.facebook.com/sharer.php?u=' + document.location + '&t=' + document.title);
-                    aFacebook.setAttribute('target', '_blank');
+						var aFacebook = document.createElement('a');
+						aFacebook.setAttribute('href', 'http://www.facebook.com/sharer.php?u=' + document.location + '&t=' + document.title);
+						aFacebook.setAttribute('target', '_blank');
 
-                    var imgFacebook = document.createElement('img');
-                    imgFacebook.setAttribute('src', baseUrl + 'img/i_facebook.gif');
-                    imgFacebook.setAttribute('alt', 'Facebook');
-                    imgFacebook.setAttribute('border', '0');
-                    imgFacebook.setAttribute('style', 'width:16px;height:16px;');
-                    imgFacebook.setAttribute('class', 'WillStrohlSBImage');
-                    aFacebook.appendChild(imgFacebook);
+						var imgFacebook = document.createElement('img');
+						imgFacebook.setAttribute('src', baseUrl + 'images/i_facebook.gif');
+						imgFacebook.setAttribute('alt', 'Facebook');
+						imgFacebook.setAttribute('border', '0');
+						imgFacebook.setAttribute('style', 'width:16px;height:16px;');
+						imgFacebook.setAttribute('class', 'WillStrohlSBImage');
+						aFacebook.appendChild(imgFacebook);
 
-                    div.appendChild(aFacebook);
-                    div.innerHTML = div.innerHTML + '&nbsp;';
-                }
+						div.appendChild(aFacebook);
+						div.innerHTML = div.innerHTML + '&nbsp;';
+					}
 
-                /*
-                
-                STUMBLEUPON
-                
-                */
+					/*
+					
+					STUMBLEUPON
+					
+					*/
 
-                if (sbStumbleUpon == 'true') {
-                    // <a href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.yoursite.com%2Farticle.php%26title%3DThe%2BArticle%2BTitle"> 
-                    // <img border=0 src="http://cdn.stumble-upon.com/images/16x16_su_round.gif" alt=""> Stumble It!</a>
-                    div.innerHTML = div.innerHTML + '&nbsp;';
+					if (sbStumbleUpon == 'true') {
+						// <a href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.yoursite.com%2Farticle.php%26title%3DThe%2BArticle%2BTitle"> 
+						// <img border=0 src="http://cdn.stumble-upon.com/images/16x16_su_round.gif" alt=""> Stumble It!</a>
+						div.innerHTML = div.innerHTML + '&nbsp;';
 
-                    var aStumbleUpon = document.createElement('a');
-                    aStumbleUpon.setAttribute('href', 'http://www.stumbleupon.com/submit?url=' + document.location + '&=title=' + document.title);
-                    aStumbleUpon.setAttribute('target', '_blank');
+						var aStumbleUpon = document.createElement('a');
+						aStumbleUpon.setAttribute('href', 'http://www.stumbleupon.com/submit?url=' + document.location + '&=title=' + document.title);
+						aStumbleUpon.setAttribute('target', '_blank');
 
-                    var imgStumbleUpon = document.createElement('img');
-                    imgStumbleUpon.setAttribute('src', 'http://cdn.stumble-upon.com/images/16x16_su_round.gif');
-                    imgStumbleUpon.setAttribute('alt', 'Facebook');
-                    imgStumbleUpon.setAttribute('border', '0');
-                    imgStumbleUpon.setAttribute('style', 'width:16px;height:16px;');
-                    imgStumbleUpon.setAttribute('class', 'WillStrohlSBImage');
-                    aStumbleUpon.appendChild(imgStumbleUpon);
+						var imgStumbleUpon = document.createElement('img');
+						imgStumbleUpon.setAttribute('src', 'http://cdn.stumble-upon.com/images/16x16_su_round.gif');
+						imgStumbleUpon.setAttribute('alt', 'Facebook');
+						imgStumbleUpon.setAttribute('border', '0');
+						imgStumbleUpon.setAttribute('style', 'width:16px;height:16px;');
+						imgStumbleUpon.setAttribute('class', 'WillStrohlSBImage');
+						aStumbleUpon.appendChild(imgStumbleUpon);
 
-                    div.appendChild(aStumbleUpon);
-                    div.innerHTML = div.innerHTML + '&nbsp;';
-                }
+						div.appendChild(aStumbleUpon);
+						div.innerHTML = div.innerHTML + '&nbsp;';
+					}
 
-                WillStrohl.Widgets.SocialBookmarkWidget.callBaseMethod(this, 'render', [div]);
+					WillStrohl.Widgets.SocialBookmarkWidget.callBaseMethod(this, 'render', [div]);
 
-				if (setStyle != 'false') {
-					$('.WillStrohlSBWrapper').attr('style', 'width:' + valWidth + ';height:' + valHeight + ';display:block;');
-					// possible additions to the above styles:  border:1px solid #000000;background-color:#ffffff;vertical-align:middle;margin-top:auto;margin-bottom:auto;
-					$('.WillStrohlSBImage').css('border', '0px solid #ffffff');
+					if (setStyle != 'false') {
+						$('.WillStrohlSBWrapper').attr('style', 'width:' + valWidth + ';height:' + valHeight + ';display:block;');
+						// possible additions to the above styles:  border:1px solid #000000;background-color:#ffffff;vertical-align:middle;margin-top:auto;margin-bottom:auto;
+						$('.WillStrohlSBImage').css('border', '0px solid #ffffff');
+					}
 				}
-
+			}
+			catch (e)
+			{
+				alert('An Error Occurred: ' + e);
             }
 
         }
