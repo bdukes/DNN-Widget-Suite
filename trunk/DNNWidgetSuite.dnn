@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="WillStrohl.WidgetSuite" type="Widget" version="1.0.0">
+    <package name="WillStrohl.WidgetSuite" type="Widget" version="1.0.1">
       <friendlyName>DNN Widget Suite</friendlyName>
       <description>This is a suite of widgets that allows you to perform various functions within your DotNetNuke website, client-side, using the built-in widget framework.</description>
       <owner>
@@ -32,6 +32,9 @@
             </widgetFile>
             <widgetFile>
               <name>images/external-link.png</name>
+            </widgetFile>
+            <widgetFile>
+              <name>images/i_facebook.gif</name>
             </widgetFile>
           </widgetFiles>
         </component>

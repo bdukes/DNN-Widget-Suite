@@ -48,6 +48,7 @@ WillStrohl.Widgets.SocialBookmarkWidget.prototype =
             var params = this._widget.childNodes;
             if (params != null) {
                 var baseUrl = '';
+				var setStyle = 'false';
                 var valWidth = '500px';
                 var valHeight = '35px';
                 var sbDigg = 'false';
@@ -62,6 +63,7 @@ WillStrohl.Widgets.SocialBookmarkWidget.prototype =
                             case 'baseurl': baseUrl = params[p].value; break;
                             case 'width': valWidth = params[p].value; break;
                             case 'height': valHeight = params[p].value; break;
+                            case 'setstyle': setStyle = params[p].value; break;
                             case 'showdigg': sbDigg = params[p].value; break;
                             case 'showdelicious': sbDelicious = params[p].value; break;
                             case 'showdotnetkicks': sbDotNetKicks = params[p].value; break;
@@ -73,10 +75,13 @@ WillStrohl.Widgets.SocialBookmarkWidget.prototype =
                     }
                 }
             }
+			
+			if (baseUrl == '') baseUrl = location.hostname;
 
             if (baseUrl != '') {
                 if (baseUrl.indexOf('http') == -1) {
-                    baseUrl = 'http://' + baseUrl;
+					var httpHost = (("https:" == document.location.protocol) ? 'https:/' : 'http:/');
+                    baseUrl = httpHost + '/' + baseUrl;
                 }
                 baseUrl = baseUrl + '/Resources/Widgets/User/WillStrohl/';
 
@@ -214,9 +219,11 @@ WillStrohl.Widgets.SocialBookmarkWidget.prototype =
 
                 WillStrohl.Widgets.SocialBookmarkWidget.callBaseMethod(this, 'render', [div]);
 
-                $('.WillStrohlSBWrapper').attr('style', 'width:' + valWidth + ';height:' + valHeight + ';display:block;');
-                // possible additions to the above styles:  border:1px solid #000000;background-color:#ffffff;vertical-align:middle;margin-top:auto;margin-bottom:auto;
-                $('.WillStrohlSBImage').css('border', '0px solid #ffffff');
+				if (setStyle != 'false') {
+					$('.WillStrohlSBWrapper').attr('style', 'width:' + valWidth + ';height:' + valHeight + ';display:block;');
+					// possible additions to the above styles:  border:1px solid #000000;background-color:#ffffff;vertical-align:middle;margin-top:auto;margin-bottom:auto;
+					$('.WillStrohlSBImage').css('border', '0px solid #ffffff');
+				}
 
             }
 
