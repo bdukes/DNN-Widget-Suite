@@ -30,11 +30,15 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ''' <summary>
 ''' This widget script adds an image to external links found in the page.
 ''' </summary>
-''' <version>01.00.00</version>
+''' <version>01.00.02</version>
 ''' <remarks>
 ''' </remarks>
 ''' <history>
 ''' [wstrohl] - 20101129 - Created
+''' [markxa]  - 20101203 - Added "newWindow" parameter to add target="_blank"
+'''                      - Added "class" parameter to add CSS class to links
+'''                      - Used $dnn base URLs to root images
+'''                      - Allowed specifying blank image to leave it out
 ''' </history>
 ''' -----------------------------------------------------------------------------
 
@@ -43,8 +47,10 @@ EXAMPLE:
 </object>
 
 <object id="wgtExternalLinks" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.ExternalLinks" declare="declare">
-	<param name="altText" value="Opens to New Site" />
 	<param name="image" value="/images/edit.gif" />
+	<param name="altText" value="Opens to New Site" />
+	<param name="class" value="externalLink" />
+	<param name="newWindow" value="true" />
 </object>
 */
 
@@ -58,63 +64,68 @@ Type.registerNamespace("WillStrohl.Widgets");
 
 WillStrohl.Widgets.ExternalLinks = function(widget)
 {
-    WillStrohl.Widgets.ExternalLinks.initializeBase(this, [widget]);
+	WillStrohl.Widgets.ExternalLinks.initializeBase(this, [widget]);
 }
 
 WillStrohl.Widgets.ExternalLinks.prototype =
 {
-    // BEGIN: render
-    render:
-        function()
-        {
-			
-			/* set-up parameters */
-            var params = this._widget.childNodes;
-            if (params != null)
-            {
-				/* default parameters */
-				var altText = 'external link';
-				//var customFilter = 'a:not(:has(img))';
-				//var customFilter = 'a:not(:has(> img:first-child))';
-                var image = '/Resources/Widgets/User/WillStrohl/images/external-link.png';
-				
-				/* parse parameters */
-                for (var p = 0; p < params.length; p++)
-                {
-					try
-                    {
-						var paramName = params[p].name.toLowerCase();
-						switch (paramName)
-						{
-							case "alttext": altText = params[p].value; break;
-							//case "customfilter": customFilter = params[p].value; break;
-							case "image": image = params[p].value; break;
-						}
-                    }
-                    catch (e)
-                    {
-						//alert('An Error Occurred: ' + e);
-                    }
-                }
-            }
-			
-			try
-			{
-				jQuery('a').filter(function() {
-					return this.hostname && this.hostname !== location.hostname;
-				}).each(function(index, Element) {
-					if (jQuery(this).has('img').length == 0) {
-						jQuery(this).append(' <img src="' + image + '" alt="' + altText + '" />');
-					}
-				});
-			}
-			catch (e)
-			{
-				//alert('An Error Occurred: ' + e);
-			}
-			
-        }
-    // END: render
+	// BEGIN: render
+	render: function () {
+		var widget = this._widget;
+
+		(function ($) {
+			// Default parameters
+			var image = $dnn.baseResourcesUrl + "Widgets/User/WillStrohl/images/external-link.png";
+			var altText = "External link";
+			var cssClass = null;
+			var newWindow = false;
+
+			// Parse parameters
+			$(widget).children().each(function () {
+				if (this.name && this.value) {
+					var paramName = this.name.toLowerCase();
+					var paramValue = this.value;
+
+					switch (paramName) {
+						case "image":
+							image = paramValue;
+							if (image === "")
+								image = null;
+							else if (image.indexOf("://") === -1)
+								image = ($dnn.hostUrl + image).replace(/^:\/\//g, "/");
+							break;
+						case "alttext":
+							altText = paramValue;
+							break;
+						case "class":
+							cssClass = paramValue;
+							break;
+						case "newwindow":
+							newWindow = (paramValue === "true");
+							break;
+					} 
+				}
+			});
+
+			// Process links
+			var pageHost = document.location.host;
+			$("a").each(function () {
+				if (this.host && (this.host !== pageHost)) {
+					var $this = $(this);
+
+					if (image && ($this.find("img").length === 0))
+						$this.append($("<img/>").attr({ src: image, alt: altText, title: altText }));
+
+					if (cssClass)
+						$this.attr({ class: cssClass });
+
+					if (newWindow)
+						$this.attr({ target: "_blank" });
+				}
+			});
+		})(jQuery);
+	}
+	// END: render
 }
 
 WillStrohl.Widgets.ExternalLinks.inheritsFrom(DotNetNuke.UI.WebControls.Widgets.BaseWidget);
