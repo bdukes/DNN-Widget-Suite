@@ -39,11 +39,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ''' -----------------------------------------------------------------------------
 
 EXAMPLE:
-<object id="wgtIconSwitcher" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.IconSwitcher" declare="declare">
-</object>
-
-<object id="wgtIconSwitcher" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.IconSwitcher" declare="declare">
-	<param name="iconPath" value="/Portals/0/Skins/SkinName/" />
+<object id="ANY-UNIQUE-ID-YOU-WANT" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.IconSwitcher" declare="declare"> 
+    <param name="defaultIconPath" value="/Portals/_default/Skins/MinimalExtropy/" /> 
 </object>
 */
 
@@ -68,7 +65,10 @@ WillStrohl.Widgets.IconSwitcher.prototype =
 
         (function ($) {
             // Default parameters
-            var iconPath = '';
+            var defaultIconPath = '';
+            var adminIconPath = '';
+            var wrapper = '';
+            var debugEnabled = 'false';
 
             // Parse parameters
             $(widget).children().each(function () {
@@ -77,23 +77,87 @@ WillStrohl.Widgets.IconSwitcher.prototype =
                     var paramValue = this.value;
 
                     switch (paramName) {
-                        case 'iconpath':
-                            cssClass = paramValue;
-                            break;
+                        case 'defaulticonpath': defaultIconPath = paramValue; break;
+                        case 'adminiconpath': adminIconPath = paramValue; break;
+                        case 'wrapper': wrapper = paramValue; break;
+                        case 'debug': debugEnabled = paramValue; break;
                     }
                 }
             });
 
-            if (iconPath != '') { 
-                // check for preceding slash
-                // check for trailing slash
+            var selector = '';
+
+            /* INITIATE THE DEBUGGER */
+            var runDebug = false;
+            if (debugEnabled == 'true') {
+                runDebug = true;
+            }
+
+            if (runDebug) {
+                if ($('#DebugConsole').length == 0) $('body').append('<div id="DebugConsole" class="DebugConsole"></div>');
+                $DEBUGLINE('<span class="Head">Widget Suite: IconSwitcher Debug Report</span><br />');
+                $DEBUGLINE('<span class="SubHead">Parameters Values:</span>');
+                $DEBUGLINE('defaultIconPath = ' + defaultIconPath);
+                $DEBUGLINE('adminIconPath = ' + adminIconPath);
+                $DEBUGLINE('wrapper = ' + wrapper);
+                $DEBUGLINE('debug = ' + debugEnabled);
+                $DEBUGLINE('<br /><span class="SubHead">Activity Log:</span>');
+            }
+
+            if (defaultIconPath != '') {
+                // parse icon path
+                defaultIconPath = parseIconPath(defaultIconPath);
+
+                if (runDebug) $DEBUGLINE('Parsed value of defaultIconPath is: ' + defaultIconPath);
+
+                selector = 'img[src^="/images/"], input[src^="/images/"]';
+                if (wrapper != '') selector = wrapper + ' ' + selector;
+
+                if (runDebug) $DEBUGLINE('There are <span class="NormalBold">' + $(selector).length + '</span> instances of defaultIcons');
+
                 // get a collection of all images that refer to the /images/* directory
                 // replace the /images/ directory with the one in the param
+                $(selector).each(function () {
+                    $(this).attr('src', $(this).attr('src').replace('/images/', defaultIconPath));
+                });
             }
+
+            if (adminIconPath != '') {
+                // parse icon path
+                adminIconPath = parseIconPath(adminIconPath);
+
+                if (runDebug) $DEBUGLINE('Parsed value of adminIconPath is: ' + adminIconPath);
+
+                selector = 'img[src^="/admin/"], input[src^="/admin/"]';
+                if (wrapper != '') selector = wrapper + ' ' + selector;
+
+                if (runDebug) $DEBUGLINE('There are <span class="NormalBold">' + $(selector).length + '</span> instances of adminIcons');
+
+                // get a collection of all images that refer to the /images/* directory
+                // replace the /images/ directory with the one in the param
+                $(selector).each(function () {
+                    $(this).attr('src', $(this).attr('src').replace('/admin/', adminIconPath));
+                });
+            }
+
+            if (runDebug) $DEBUGLINE('<br /><span class="NormalRed">Widget Suite: IconSwitcher Debug Report Complete</span>');
 
         })(jQuery);
     }
     // END: render
+}
+
+function parseIconPath(path) {
+
+    if (path != '') {
+        // check for preceding slash, and fix
+        if (path.substr(0, 1) != '/') path = '/' + path;
+        // check for trailing slash, and fix
+        if (path.substr(path.length - 1, 1) != '/') path = path + '/';
+    }
+
+    return path;
+
 }
 
 WillStrohl.Widgets.IconSwitcher.inheritsFrom(DotNetNuke.UI.WebControls.Widgets.BaseWidget);
