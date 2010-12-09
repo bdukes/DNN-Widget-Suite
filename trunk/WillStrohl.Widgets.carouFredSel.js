@@ -49,12 +49,16 @@ EXAMPLE:
 </object>
 
 <object id="wgtcarouFredSel" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.carouFredSel" declare="declare">
-    <param name="wrapper" value=".contentslider" />
-    <param name="direction" value="up" />
-    <param name="sliderSpeed" value="2500" />
-    <param name="itemHeight" value="100px" />
-    <param name="itemsVisible" value="1" />
-    <param name="carouselType" value="1" />
+<param name="wrapper" value=".contentslider" />
+<param name="direction" value="up" />
+<param name="sliderSpeed" value="2500" />
+<param name="itemHeight" value="100px" />
+<param name="itemsVisible" value="1" />
+<param name="carouselType" value="1" />
+<param name="buttonPrev" value ="#carouselPrev" />
+<param name="buttonNext" value ="#carouselNext" />
+<param name="paginationHolder" value="#carouselPagination" />
+<param name="autoStart" value="true" />
 </object>
 */
 
@@ -67,9 +71,8 @@ EXAMPLE:
 Type.registerNamespace("WillStrohl.Widgets");
 // END: Namespace management
 
-WillStrohl.Widgets.carouFredSel = function(widget)
-{
-	WillStrohl.Widgets.carouFredSel.initializeBase(this, [widget]);
+WillStrohl.Widgets.carouFredSel = function(widget) {
+    WillStrohl.Widgets.carouFredSel.initializeBase(this, [widget]);
 }
 
 WillStrohl.Widgets.carouFredSel.prototype =
@@ -86,6 +89,10 @@ WillStrohl.Widgets.carouFredSel.prototype =
             var sliderSpeed = 1000;
             var itemsVisible = 1;
             var carouselType = 1;
+            var buttonNext = null;
+            var buttonPrev = null;
+            var paginationHolder = "#carouselPagination";
+            var autoStart = "true"
 
             // Parse parameters
             $(widget).children().each(function() {
@@ -112,12 +119,37 @@ WillStrohl.Widgets.carouFredSel.prototype =
                         case "carouseltype":
                             carouselType = paramValue;
                             break;
+                        case "buttonnext":
+                            buttonNext = paramValue;
+                            break;
+                        case "buttonprev":
+                            buttonPrev = paramValue;
+                            break;
+                        case "buttonprev":
+                            buttonPrev = paramValue;
+                            break;
+                        case "paginationholder":
+                            paginationHolder = paramValue;
+                            break;
+                        case "autostart":
+                            autoStart = paramValue;
+                            break;
                     }
                 }
             });
 
             // Process links
             var pageHost = document.location.host;
+
+            function startSlider() {
+                if (autoStart == "true") {
+                    return parseInt(sliderSpeed);
+                }
+                else {
+                    return false;
+                }
+
+            }
 
 
             jQuery.getScript($dnn.baseResourcesUrl +
@@ -127,8 +159,17 @@ WillStrohl.Widgets.carouFredSel.prototype =
                                 jQuery(wrapper + " div").css("height", itemHeight);
                                 jQuery(wrapper).carouFredSel({
                                     direction: direction,
-                                    auto: parseInt(sliderSpeed),
-                                    items: parseInt(itemsVisible)
+                                    auto: startSlider(),
+                                    items: parseInt(itemsVisible),
+                                    prev: {
+                                        button: buttonPrev,
+                                        key: "left"
+                                    },
+                                    next: {
+                                        button: buttonNext,
+                                        key: "right"
+                                    },
+                                    pagination: paginationHolder
                                 });
                                 break;
                         }
