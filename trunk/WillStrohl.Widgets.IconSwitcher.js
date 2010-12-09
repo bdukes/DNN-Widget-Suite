@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 EXAMPLE:
 <object id="ANY-UNIQUE-ID-YOU-WANT" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.IconSwitcher" declare="declare"> 
-    <param name="defaultIconPath" value="/Portals/_default/Skins/MinimalExtropy/" /> 
+    <param name="defaultIconPath" value="/Resources/Widgets/User/WillStrohl/images/icons/" /> 
 </object>
 */
 
@@ -69,6 +69,7 @@ WillStrohl.Widgets.IconSwitcher.prototype =
             var adminIconPath = '';
             var wrapper = '';
             var debugEnabled = 'false';
+			var replaceExtension = '';
 
             // Parse parameters
             $(widget).children().each(function () {
@@ -81,6 +82,7 @@ WillStrohl.Widgets.IconSwitcher.prototype =
                         case 'adminiconpath': adminIconPath = paramValue; break;
                         case 'wrapper': wrapper = paramValue; break;
                         case 'debug': debugEnabled = paramValue; break;
+                        case 'replaceextension': replaceExtension = paramValue; break;
                     }
                 }
             });
@@ -101,8 +103,13 @@ WillStrohl.Widgets.IconSwitcher.prototype =
                 $DEBUGLINE('adminIconPath = ' + adminIconPath);
                 $DEBUGLINE('wrapper = ' + wrapper);
                 $DEBUGLINE('debug = ' + debugEnabled);
+                $DEBUGLINE('replaceExtension = ' + replaceExtension);
                 $DEBUGLINE('<br /><span class="SubHead">Activity Log:</span>');
             }
+			
+			if (replaceExtension != '') {
+				if (replaceExtension.indexOf('.') == -1) replaceExtension = '.' + replaceExtension;
+			}
 
             if (defaultIconPath != '') {
                 // parse icon path
@@ -118,7 +125,7 @@ WillStrohl.Widgets.IconSwitcher.prototype =
                 // get a collection of all images that refer to the /images/* directory
                 // replace the /images/ directory with the one in the param
                 $(selector).each(function () {
-                    $(this).attr('src', $(this).attr('src').replace('/images/', defaultIconPath));
+                    replaceValues(this, defaultIconPath, replaceExtension);
                 });
             }
 
@@ -136,7 +143,7 @@ WillStrohl.Widgets.IconSwitcher.prototype =
                 // get a collection of all images that refer to the /images/* directory
                 // replace the /images/ directory with the one in the param
                 $(selector).each(function () {
-                    $(this).attr('src', $(this).attr('src').replace('/admin/', adminIconPath));
+					replaceValues(this, adminIconPath, replaceExtension);
                 });
             }
 
@@ -145,6 +152,13 @@ WillStrohl.Widgets.IconSwitcher.prototype =
         })(jQuery);
     }
     // END: render
+}
+
+function replaceValues(obj, iconPath, replaceExtension){
+
+	if (iconPath != '') $(obj).attr('src', $(obj).attr('src').replace('/admin/', iconPath));
+	if (replaceExtension != '') $(obj).attr('src', $(obj).attr('src').replace('.gif', replaceExtension));
+
 }
 
 function parseIconPath(path) {
