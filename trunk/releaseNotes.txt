@@ -3,6 +3,8 @@ This release includes the following:<br />
 	<li>Enhancements to the External Links widget</li>
 	<li>Addition of the Icon Switcher widget</li>
 	<li>Addition of the Carousel widget</li>
+	<li>Addition of the IEPNGFix widget</li>
+	<li>Addition of the CSS3PIE widget</li>
 </ol>
 <br />
 Contributors of this open source and free project, include: 

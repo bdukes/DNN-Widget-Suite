@@ -51,37 +51,40 @@ EXAMPLE:
 	<param name="altText" value="Opens to New Site" />
 	<param name="class" value="externalLink" />
 	<param name="newWindow" value="true" />
+	<param name="selector" value="#wrapper" />
 </object>
 */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BEGIN: ExternalLinks class                                                                              //
+// BEGIN: ExternalLinks class                                                                                 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // BEGIN: Namespace management
 Type.registerNamespace("WillStrohl.Widgets");
 // END: Namespace management
 
-WillStrohl.Widgets.ExternalLinks = function(widget)
-{
+WillStrohl.Widgets.ExternalLinks = function (widget) {
 	WillStrohl.Widgets.ExternalLinks.initializeBase(this, [widget]);
 }
 
-WillStrohl.Widgets.ExternalLinks.prototype =
-{
+WillStrohl.Widgets.ExternalLinks.prototype = {
 	// BEGIN: render
 	render: function () {
 		var widget = this._widget;
+		var widgetBase = $dnn.baseResourcesUrl + "Widgets/User/WillStrohl/";
 
 		(function ($) {
+			var $widget = $(widget);
+
 			// Default parameters
-			var image = $dnn.baseResourcesUrl + "Widgets/User/WillStrohl/images/external-link.png";
+			var image = widgetBase + "images/external-link.png";
 			var altText = "External link";
 			var cssClass = null;
 			var newWindow = false;
+			var selector = "BODY";
 
 			// Parse parameters
-			$(widget).children().each(function () {
+			$widget.children("param").each(function () {
 				if (this.name && this.value) {
 					var paramName = this.name.toLowerCase();
 					var paramValue = this.value;
@@ -103,13 +106,16 @@ WillStrohl.Widgets.ExternalLinks.prototype =
 						case "newwindow":
 							newWindow = (paramValue === "true");
 							break;
-					} 
+						case "selector":
+							selector = paramValue;
+							break;
+					}
 				}
 			});
 
 			// Process links
 			var pageHost = document.location.host;
-			$("a").each(function () {
+			$(selector).find("a").each(function () {
 				if (this.host && (this.host !== pageHost)) {
 					var $this = $(this);
 
@@ -123,6 +129,9 @@ WillStrohl.Widgets.ExternalLinks.prototype =
 						$this.attr({ target: "_blank" });
 				}
 			});
+
+			// Remove widget declaration from DOM for cleaner rendering
+			$(widget).remove();
 		})(jQuery);
 	}
 	// END: render

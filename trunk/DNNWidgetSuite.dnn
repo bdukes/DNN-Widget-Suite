@@ -31,6 +31,12 @@
                             <name>WillStrohl.Widgets.carouFredSel.js</name>
                         </widgetFile>
                         <widgetFile>
+                            <name>WillStrohl.Widgets.IEPNGFix.js</name>
+                        </widgetFile>
+                        <widgetFile>
+                            <name>WillStrohl.Widgets.CSS3PIE.js</name>
+                        </widgetFile>
+                        <widgetFile>
                             <name>license.txt</name>
                         </widgetFile>
                         <widgetFile>
@@ -44,6 +50,18 @@
                         </widgetFile>
                         <widgetFile>
                             <name>js/jquery.carouFredSel-2.5.4-packed.js</name>
+                        </widgetFile>
+                        <widgetFile>
+                            <name>CSS3PIE/PIE.htc</name>
+                        </widgetFile>
+                        <widgetFile>
+                            <name>IEPNGFix/IEPNGFix.htc</name>
+                        </widgetFile>
+                        <widgetFile>
+                            <name>IEPNGFix/IEPNGFix_tilebg.js</name>
+                        </widgetFile>
+                        <widgetFile>
+                            <name>IEPNGFix/blank.gif</name>
                         </widgetFile>
                     </widgetFiles>
                 </component>
