@@ -28,6 +28,9 @@
                             <name>WillStrohl.Widgets.IconSwitcher.js</name>
                         </widgetFile>
                         <widgetFile>
+                            <name>WillStrohl.Widgets.carouFredSel.js</name>
+                        </widgetFile>
+                        <widgetFile>
                             <name>license.txt</name>
                         </widgetFile>
                         <widgetFile>
@@ -38,6 +41,9 @@
                         </widgetFile>
                         <widgetFile>
                             <name>images/i_facebook.gif</name>
+                        </widgetFile>
+                        <widgetFile>
+                            <name>js/jquery.carouFredSel-2.5.4-packed.js</name>
                         </widgetFile>
                     </widgetFiles>
                 </component>
