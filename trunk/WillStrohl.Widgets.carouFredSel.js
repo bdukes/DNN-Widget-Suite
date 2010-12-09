@@ -125,9 +125,6 @@ WillStrohl.Widgets.carouFredSel.prototype =
                         case "buttonprev":
                             buttonPrev = paramValue;
                             break;
-                        case "buttonprev":
-                            buttonPrev = paramValue;
-                            break;
                         case "paginationholder":
                             paginationHolder = paramValue;
                             break;
