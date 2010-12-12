@@ -1,5 +1,8 @@
 /*
-Will Strohl - http://www.WillStrohl.com
+IE PNG Fix Widget
+Widget Suite for DotNetNuke
+Author - Mark Allan (http://www.dnngarden.com)
+Project Contributors - Will Strohl (http://www.WillStrohl.com), Mark Allan (http://www.dnngarden.com), Armand Datema (http://www.schwingsoft.com)
 Support - http://dnnwidgets.codeplex.com
 Copyright (c) 2010, Will Strohl
 All rights reserved.

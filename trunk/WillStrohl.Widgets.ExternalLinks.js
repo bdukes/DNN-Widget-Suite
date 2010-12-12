@@ -1,5 +1,6 @@
 /*
 Will Strohl - http://www.WillStrohl.com
+Authors - Will Strohl, Mark Allan (http://www.dnngarden.com)
 Support - http://dnnwidgets.codeplex.com
 Copyright (c) 2010, Will Strohl
 All rights reserved.
