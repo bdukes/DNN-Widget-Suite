@@ -16,25 +16,7 @@
                     <widgetFiles>
                         <basePath>WillStrohl</basePath>
                         <widgetFile>
-                            <name>WillStrohl.Widgets.SocialBookmarkWidget.js</name>
-                        </widgetFile>
-                        <widgetFile>
-                            <name>WillStrohl.Widgets.TechnoratiInfoWidget.js</name>
-                        </widgetFile>
-                        <widgetFile>
-                            <name>WillStrohl.Widgets.ExternalLinks.js</name>
-                        </widgetFile>
-                        <widgetFile>
-                            <name>WillStrohl.Widgets.IconSwitcher.js</name>
-                        </widgetFile>
-                        <widgetFile>
-                            <name>WillStrohl.Widgets.carouFredSel.js</name>
-                        </widgetFile>
-                        <widgetFile>
-                            <name>WillStrohl.Widgets.IEPNGFix.js</name>
-                        </widgetFile>
-                        <widgetFile>
-                            <name>WillStrohl.Widgets.CSS3PIE.js</name>
+                            <name>DNNWidgetSuite.dnn</name>
                         </widgetFile>
                         <widgetFile>
                             <name>license.txt</name>
@@ -42,28 +24,15 @@
                         <widgetFile>
                             <name>releasenotes.txt</name>
                         </widgetFile>
-                        <widgetFile>
-                            <name>images/external-link.png</name>
-                        </widgetFile>
-                        <widgetFile>
-                            <name>images/i_facebook.gif</name>
-                        </widgetFile>
-                        <widgetFile>
-                            <name>js/jquery.carouFredSel-2.5.4-packed.js</name>
-                        </widgetFile>
-                        <widgetFile>
-                            <name>CSS3PIE/PIE.htc</name>
-                        </widgetFile>
-                        <widgetFile>
-                            <name>IEPNGFix/IEPNGFix.htc</name>
-                        </widgetFile>
-                        <widgetFile>
-                            <name>IEPNGFix/IEPNGFix_tilebg.js</name>
-                        </widgetFile>
-                        <widgetFile>
-                            <name>IEPNGFix/blank.gif</name>
-                        </widgetFile>
                     </widgetFiles>
+                </component>
+                <component type="ResourceFile">
+                    <resourceFiles>
+                        <basePath>WillStrohl</basePath>
+                        <resourceFile>
+                            <name>Resources.zip</name>
+                        </resourceFile>
+                    </resourceFiles>
                 </component>
             </components>
         </package>
