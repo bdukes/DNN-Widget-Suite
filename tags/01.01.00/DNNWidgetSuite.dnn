@@ -1,0 +1,40 @@
+﻿<dotnetnuke type="Package" version="5.0">
+    <packages>
+        <package name="WillStrohl.WidgetSuite" type="Widget" version="1.1.0">
+            <friendlyName>DNN Widget Suite</friendlyName>
+            <description>This is a suite of widgets that allows you to perform various functions within your DotNetNuke website, client-side, using the built-in widget framework.</description>
+            <owner>
+                <name>Will Strohl</name>
+                <organization>Widget Suite Team (Will Strohl, Mark Allan, Armand Datema)</organization>
+                <url><![CDATA[<a href="http://dnnwidgets.codeplex.com" target="_blank">http://dnnwidgets.codeplex.com</a>]]></url>
+                <email><![CDATA[<a href="mailto:will.strohl@gmail.com">will.strohl@gmail.com</a>]]></email>
+            </owner>
+            <license src="license.txt" />
+            <releaseNotes src="releasenotes.txt" />
+            <components>
+                <component type="Widget">
+                    <widgetFiles>
+                        <basePath>WillStrohl</basePath>
+                        <widgetFile>
+                            <name>DNNWidgetSuite.dnn</name>
+                        </widgetFile>
+                        <widgetFile>
+                            <name>license.txt</name>
+                        </widgetFile>
+                        <widgetFile>
+                            <name>releasenotes.txt</name>
+                        </widgetFile>
+                    </widgetFiles>
+                </component>
+                <component type="ResourceFile">
+                    <resourceFiles>
+                        <basePath>Resources\Widgets\User\WillStrohl</basePath>
+                        <resourceFile>
+                            <name>Resources.zip</name>
+                        </resourceFile>
+                    </resourceFiles>
+                </component>
+            </components>
+        </package>
+    </packages>
+</dotnetnuke>
