@@ -28,7 +28,7 @@
                 </component>
                 <component type="ResourceFile">
                     <resourceFiles>
-                        <basePath>WillStrohl</basePath>
+                        <basePath>Resources\Widgets\User\WillStrohl</basePath>
                         <resourceFile>
                             <name>Resources.zip</name>
                         </resourceFile>
