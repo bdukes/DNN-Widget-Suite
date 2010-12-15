@@ -128,7 +128,7 @@ WillStrohl.Widgets.IconSwitcher.prototype =
                 // get a collection of all images that refer to the /images/* directory
                 // replace the /images/ directory with the one in the param
                 $(selector).each(function () {
-                    replaceValues(this, defaultIconPath, replaceExtension);
+                    replaceValues(this, '/images/', defaultIconPath, replaceExtension);
                 });
             }
 
@@ -146,7 +146,7 @@ WillStrohl.Widgets.IconSwitcher.prototype =
                 // get a collection of all images that refer to the /images/* directory
                 // replace the /images/ directory with the one in the param
                 $(selector).each(function () {
-					replaceValues(this, adminIconPath, replaceExtension);
+					replaceValues(this, '/admin/', adminIconPath, replaceExtension);
                 });
             }
 
@@ -157,9 +157,9 @@ WillStrohl.Widgets.IconSwitcher.prototype =
     // END: render
 }
 
-function replaceValues(obj, iconPath, replaceExtension){
+function replaceValues(obj, pathToReplace, iconPath, replaceExtension){
 
-	if (iconPath != '') $(obj).attr('src', $(obj).attr('src').replace('/admin/', iconPath));
+	if (iconPath != '') $(obj).attr('src', $(obj).attr('src').replace(pathToReplace, iconPath));
 	if (replaceExtension != '') $(obj).attr('src', $(obj).attr('src').replace('.gif', replaceExtension));
 
 }
