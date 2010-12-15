@@ -115,16 +115,16 @@ WillStrohl.Widgets.ExternalLinks.prototype = {
 			});
 
 			// Process links
-			var pageHost = document.location.host;
+			var pageHost = document.location.hostname;
 			$(selector).find("a").each(function () {
-				if (this.host && (this.host !== pageHost)) {
+				if (this.hostname && (this.hostname !== pageHost)) {
 					var $this = $(this);
 
 					if (image && ($this.find("img").length === 0))
 						$this.append($("<img/>").attr({ src: image, alt: altText, title: altText }));
 
 					if (cssClass)
-						$this.attr({ class: cssClass });
+						$this.attr({ "class": cssClass });
 
 					if (newWindow)
 						$this.attr({ target: "_blank" });
