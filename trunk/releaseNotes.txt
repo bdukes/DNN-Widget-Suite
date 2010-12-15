@@ -5,6 +5,8 @@ This release includes the following:<br />
 	<li>Addition of the Carousel widget</li>
 	<li>Addition of the IEPNGFix widget</li>
 	<li>Addition of the CSS3PIE widget</li>
+	<li>Addition of an example icon set</li>
+	<li>Minified deployment scripts for deployment &amp; created different pacakges for download size concerns</li>
 </ol>
 <br />
 Contributors of this open source and free project, include: 
