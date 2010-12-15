@@ -72,7 +72,7 @@ WillStrohl.Widgets.IconSwitcher.prototype =
             var adminIconPath = '';
             var wrapper = '';
             var debugEnabled = 'false';
-			var replaceExtension = '';
+            var replaceExtension = '';
 
             // Parse parameters
             $(widget).children().each(function () {
@@ -109,10 +109,10 @@ WillStrohl.Widgets.IconSwitcher.prototype =
                 $DEBUGLINE('replaceExtension = ' + replaceExtension);
                 $DEBUGLINE('<br /><span class="SubHead">Activity Log:</span>');
             }
-			
-			if (replaceExtension != '') {
-				if (replaceExtension.indexOf('.') == -1) replaceExtension = '.' + replaceExtension;
-			}
+
+            if (replaceExtension != '') {
+                if (replaceExtension.indexOf('.') == -1) replaceExtension = '.' + replaceExtension;
+            }
 
             if (defaultIconPath != '') {
                 // parse icon path
@@ -121,7 +121,9 @@ WillStrohl.Widgets.IconSwitcher.prototype =
                 if (runDebug) $DEBUGLINE('Parsed value of defaultIconPath is: ' + defaultIconPath);
 
                 selector = 'img[src^="/images/"], input[src^="/images/"]';
-                if (wrapper != '') selector = wrapper + ' ' + selector;
+                if (wrapper != '') {
+                    selector = wrapper + ' img[src^="/images/"], ' + wrapper + ' input[src^="/images/"]';
+                }
 
                 if (runDebug) $DEBUGLINE('There are <span class="NormalBold">' + $(selector).length + '</span> instances of defaultIcons');
 
@@ -139,14 +141,16 @@ WillStrohl.Widgets.IconSwitcher.prototype =
                 if (runDebug) $DEBUGLINE('Parsed value of adminIconPath is: ' + adminIconPath);
 
                 selector = 'img[src^="/admin/"], input[src^="/admin/"]';
-                if (wrapper != '') selector = wrapper + ' ' + selector;
+                if (wrapper != '') {
+                    selector = wrapper + ' img[src^="/admin/"], ' + wrapper + ' input[src^="/admin/"]';
+                }
 
                 if (runDebug) $DEBUGLINE('There are <span class="NormalBold">' + $(selector).length + '</span> instances of adminIcons');
 
                 // get a collection of all images that refer to the /images/* directory
                 // replace the /images/ directory with the one in the param
                 $(selector).each(function () {
-					replaceValues(this, '/admin/', adminIconPath, replaceExtension);
+                    replaceValues(this, '/admin/', adminIconPath, replaceExtension);
                 });
             }
 
