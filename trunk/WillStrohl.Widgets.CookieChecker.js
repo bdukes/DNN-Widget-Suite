@@ -71,7 +71,8 @@ WillStrohl.Widgets.CookieChecker.prototype =
         (function ($) {
             // Default parameters
             var helpUrl = 'http://www.google.com/support/accounts/bin/answer.py?&answer=61416';
-            var messageContainer = '';
+            var headerMessage = 'Whoops! Cookies Are Disabled...';
+            var cookieMessage = 'Cookies are used on this site to help enhance your experience and satisfaction with our features. Please <a href="[REPLACEME]" target="_blank">enable cookies in your web browser</a> before you continue.';
             var debugEnabled = 'false';
 
             // Parse parameters
@@ -82,7 +83,8 @@ WillStrohl.Widgets.CookieChecker.prototype =
 
                     switch (paramName) {
                         case 'helpurl': helpUrl = paramValue; break;
-                        case 'messagecontainer': messageContainer = paramValue; break;
+                        case 'headerMessage': headerMessage = paramValue; break;
+                        case 'cookieMessage': cookieMessage = paramValue; break;
                         case 'debugenabled': debugEnabled = paramValue; break;
                     }
                 }
@@ -99,10 +101,25 @@ WillStrohl.Widgets.CookieChecker.prototype =
                 $DEBUGLINE('<span class="Head">Widget Suite: CookieChecker Debug Report</span><br />');
                 $DEBUGLINE('<span class="SubHead">Parameters Values:</span>');
                 $DEBUGLINE('helpUrl = ' + helpUrl);
-                $DEBUGLINE('messageContainer = ' + messageContainer);
+                $DEBUGLINE('headerMessage = ' + headerMessage);
+                $DEBUGLINE('cookieMessage = ' + cookieMessage);
                 $DEBUGLINE('debug = ' + debugEnabled);
                 $DEBUGLINE('<br /><span class="SubHead">Activity Log:</span>');
             }
+
+            if (runDebug) $DEBUGLINE('BEGIN CookieChecker Logic');
+
+            if (helpUrl != '' && helpUrl.indexOf('[REPLACEME]') > -1) {
+                if (runDebug) $DEBUGLINE('Replacing helpUrl in cookieMessage');
+                cookieMessage.replace('[REPLACEME]', helpUrl);
+            }
+
+            if (runDebug) $DEBUGLINE('Creating a new message container');
+            $('#dnn_ContentPane').append('<div id="wgtCookieCheckerContainer" class="CookieCheckerContainer Normal"><span id="spnCookieCheckerWrap"><h2 id="hdrCookieChecker" class="Head"></h2><p id="pCookieCheckerMessage"></p></span></div>');
+
+
+
+            if (runDebug) $DEBUGLINE('END CookieChecker Logic');
 
             if (runDebug) $DEBUGLINE('<br /><span class="NormalRed">Widget Suite: CookieChecker Debug Report Complete</span>');
 
