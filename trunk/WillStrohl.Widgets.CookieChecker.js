@@ -70,7 +70,7 @@ WillStrohl.Widgets.CookieChecker.prototype =
 
         (function ($) {
             // Default parameters
-            var helpUrl = 'http://www.google.com/support/accounts/bin/answer.py?&answer=61416';
+            var helpUrl = 'http://www.google.com/support/accounts/bin/answer.py?&amp;answer=61416';
             var headerMessage = 'Whoops! Cookies Are Disabled...';
             var cookieMessage = 'Cookies are used on this site to help enhance your experience and satisfaction with our features. Please <a href="[REPLACEME]" target="_blank">enable cookies in your web browser</a> before you continue.';
             var debugEnabled = 'false';
@@ -107,19 +107,33 @@ WillStrohl.Widgets.CookieChecker.prototype =
                 $DEBUGLINE('<br /><span class="SubHead">Activity Log:</span>');
             }
 
-            if (runDebug) $DEBUGLINE('BEGIN CookieChecker Logic');
+            if (runDebug) $DEBUGLINE('Attempt to create a client-side cookie');
+            setWNSCookie('testCookie', 'successful', 7);
 
-            if (helpUrl != '' && helpUrl.indexOf('[REPLACEME]') > -1) {
-                if (runDebug) $DEBUGLINE('Replacing helpUrl in cookieMessage');
-                cookieMessage.replace('[REPLACEME]', helpUrl);
+            var strCheck = getWNSCookie('testCookie');
+
+            if (runDebug) $DEBUGLINE('Test the client-side cookie to see if it exists');
+            if (strCheck != null && strCheck != '') {
+                if (runDebug) $DEBUGLINE('The cookie DOES NOT EXIST');
+
+                if (runDebug) $DEBUGLINE('BEGIN CookieChecker Logic');
+
+                if (helpUrl != '' && helpUrl.indexOf('[REPLACEME]') > -1) {
+                    if (runDebug) $DEBUGLINE('Replacing helpUrl in cookieMessage');
+                    cookieMessage.replace('[REPLACEME]', helpUrl);
+                }
+
+                if (runDebug) $DEBUGLINE('Creating a new message container');
+                $('#dnn_ContentPane').append('<div id="wgtCookieCheckerContainer" class="CookieChecker Normal"><span id="spnCookieCheckerWrap" class="CookieChecker"><h2 id="hdrCookieChecker" class="Head CookieChecker"></h2><p id="pCookieCheckerMessage" class="CookieChecker"></p></span></div>');
+
+                $('#hdrCookieChecker').html(headerMessage);
+                $('#pCookieCheckerMessage').html(cookieMessage);
+
+                if (runDebug) $DEBUGLINE('END CookieChecker Logic');
+
+            } else {
+                if (runDebug) $DEBUGLINE('The cookie EXISTS');
             }
-
-            if (runDebug) $DEBUGLINE('Creating a new message container');
-            $('#dnn_ContentPane').append('<div id="wgtCookieCheckerContainer" class="CookieCheckerContainer Normal"><span id="spnCookieCheckerWrap"><h2 id="hdrCookieChecker" class="Head"></h2><p id="pCookieCheckerMessage"></p></span></div>');
-
-
-
-            if (runDebug) $DEBUGLINE('END CookieChecker Logic');
 
             if (runDebug) $DEBUGLINE('<br /><span class="NormalRed">Widget Suite: CookieChecker Debug Report Complete</span>');
 
@@ -127,6 +141,9 @@ WillStrohl.Widgets.CookieChecker.prototype =
     }
     // END: render
 }
+
+function setWNSCookie(c_name, value, expiredays) { var exdate = new Date(); exdate.setDate(exdate.getDate() + expiredays); document.cookie = c_name + '=' + escape(value) + ((expiredays == null) ? '' : ';expires=' + exdate.toGMTString()); }
+function getWNSCookie(c_name) { if (document.cookie.length > 0) { c_start = document.cookie.indexOf(c_name + '='); if (c_start != -1) { c_start = c_start + c_name.length + 1; c_end = document.cookie.indexOf(';', c_start); if (c_end == -1) c_end = document.cookie.length; return unescape(document.cookie.substring(c_start, c_end)); } } return ''; }
 
 WillStrohl.Widgets.CookieChecker.inheritsFrom(DotNetNuke.UI.WebControls.Widgets.BaseWidget);
 WillStrohl.Widgets.CookieChecker.registerClass("WillStrohl.Widgets.CookieChecker", DotNetNuke.UI.WebControls.Widgets.BaseWidget);
