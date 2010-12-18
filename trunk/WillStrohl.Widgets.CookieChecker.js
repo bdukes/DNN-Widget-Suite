@@ -45,7 +45,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 EXAMPLE:
 <object id="ANY-UNIQUE-ID-YOU-WANT" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.CookieChecker" declare="declare"> 
-    <param name="" value="" /> 
+    <param name="helpUrl" value="true" /> 
+    <param name="headerMessage" value="true" /> 
+    <param name="cookieMessage" value="true" /> 
+    <param name="debug" value="true" /> 
 </object>
 */
 
@@ -85,7 +88,7 @@ WillStrohl.Widgets.CookieChecker.prototype =
                         case 'helpurl': helpUrl = paramValue; break;
                         case 'headerMessage': headerMessage = paramValue; break;
                         case 'cookieMessage': cookieMessage = paramValue; break;
-                        case 'debugenabled': debugEnabled = paramValue; break;
+                        case 'debug': debugEnabled = paramValue; break;
                     }
                 }
             });
@@ -112,8 +115,15 @@ WillStrohl.Widgets.CookieChecker.prototype =
 
             var strCheck = getWNSCookie('testCookie');
 
+            if (runDebug) $DEBUGLINE('Cookie Value = ' + strCheck);
+
             if (runDebug) $DEBUGLINE('Test the client-side cookie to see if it exists');
             if (strCheck != null && strCheck != '') {
+
+                if (runDebug) $DEBUGLINE('The cookie EXISTS');
+
+            } else {
+
                 if (runDebug) $DEBUGLINE('The cookie DOES NOT EXIST');
 
                 if (runDebug) $DEBUGLINE('BEGIN CookieChecker Logic');
@@ -124,15 +134,13 @@ WillStrohl.Widgets.CookieChecker.prototype =
                 }
 
                 if (runDebug) $DEBUGLINE('Creating a new message container');
-                $('#dnn_ContentPane').append('<div id="wgtCookieCheckerContainer" class="CookieChecker Normal"><span id="spnCookieCheckerWrap" class="CookieChecker"><h2 id="hdrCookieChecker" class="Head CookieChecker"></h2><p id="pCookieCheckerMessage" class="CookieChecker"></p></span></div>');
+                $('#dnn_ContentPane').prepend('<div id="wgtCookieCheckerContainer" class="CookieChecker Normal"><span id="spnCookieCheckerWrap" class="CookieChecker"><h2 id="hdrCookieChecker" class="Head CookieChecker"></h2><p id="pCookieCheckerMessage" class="CookieChecker"></p></span></div>');
 
                 $('#hdrCookieChecker').html(headerMessage);
                 $('#pCookieCheckerMessage').html(cookieMessage);
 
                 if (runDebug) $DEBUGLINE('END CookieChecker Logic');
-
-            } else {
-                if (runDebug) $DEBUGLINE('The cookie EXISTS');
+                
             }
 
             if (runDebug) $DEBUGLINE('<br /><span class="NormalRed">Widget Suite: CookieChecker Debug Report Complete</span>');
