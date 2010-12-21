@@ -139,6 +139,9 @@ WillStrohl.Widgets.GoogleAnalyticsEvents.prototype =
             if (event != '' && selector != '' && category != '') {
 
                 if (runDebug) $DEBUGLINE('Attach the Google Analytics Event code to the "selected" elements on the page');
+
+                if (runDebug) $DEBUGLINE('Wiring to the ' + $(selector).length + ' elements found');
+
                 $(selector).live(event, function () {
                     if (valueOkay) {
                         if (runDebug) $DEBUGLINE('valueOkay = true');
@@ -150,6 +153,8 @@ WillStrohl.Widgets.GoogleAnalyticsEvents.prototype =
                     if (runDebug) $DEBUGLINE('GA Event wired to selected element(s)');
                 });
 
+            } else {
+                if (runDebug) $DEBUGLINE('Google Analytics Event code cannot be wired');
             }
 
             if (runDebug) $DEBUGLINE('<br /><span class="NormalRed">Widget Suite: GoogleAnalyticsEvents Debug Report Complete</span>');
