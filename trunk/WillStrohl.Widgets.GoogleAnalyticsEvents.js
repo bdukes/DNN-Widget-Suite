@@ -141,10 +141,13 @@ WillStrohl.Widgets.GoogleAnalyticsEvents.prototype =
                 if (runDebug) $DEBUGLINE('Attach the Google Analytics Event code to the "selected" elements on the page');
                 $(selector).live(event, function () {
                     if (valueOkay) {
+                        if (runDebug) $DEBUGLINE('valueOkay = true');
                         _gaq.push(['_trackEvent', category, action, label, value]);
                     } else {
+                        if (runDebug) $DEBUGLINE('valueOkay = false');
                         _gaq.push(['_trackEvent', category, action, label]);
                     }
+                    if (runDebug) $DEBUGLINE('GA Event wired to selected element(s)');
                 });
 
             }
