@@ -40,6 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 '''                      - Added "class" parameter to add CSS class to links
 '''                      - Used $dnn base URLs to root images
 '''                      - Allowed specifying blank image to leave it out
+''' [markxa]  - 20101215 - Workrounds for a couple of inconsistencies in IE6-8
 ''' </history>
 ''' -----------------------------------------------------------------------------
 
