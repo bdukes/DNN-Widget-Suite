@@ -41,6 +41,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 '''                      - Used $dnn base URLs to root images
 '''                      - Allowed specifying blank image to leave it out
 ''' [markxa]  - 20101215 - Workrounds for a couple of inconsistencies in IE6-8
+''' [markxa]  - 20101229 - Added Google Analytics event tracking
+'''                      - "class" parameter adds class instead of replacing
 ''' </history>
 ''' -----------------------------------------------------------------------------
 
@@ -54,6 +56,8 @@ EXAMPLE:
 	<param name="class" value="externalLink" />
 	<param name="newWindow" value="true" />
 	<param name="selector" value="#wrapper" />
+	<param name="gaCategory" value="Outbound" />
+	<param name="gaCategory" value="Click" />
 </object>
 */
 
@@ -81,15 +85,17 @@ WillStrohl.Widgets.ExternalLinks.prototype = {
 			// Default parameters
 			var image = widgetBase + "images/external-link.png";
 			var altText = "External link";
-			var cssClass = null;
+			var cssClass = "";
 			var newWindow = false;
 			var selector = "BODY";
+			var gaCategory = "";
+			var gaAction = "";
 
 			// Parse parameters
 			$widget.children("param").each(function () {
 				if (this.name && this.value) {
-					var paramName = this.name.toLowerCase();
-					var paramValue = this.value;
+					var paramName = this.name.toLowerCase().trim();
+					var paramValue = this.value.trim();
 
 					switch (paramName) {
 						case "image":
@@ -111,6 +117,12 @@ WillStrohl.Widgets.ExternalLinks.prototype = {
 						case "selector":
 							selector = paramValue;
 							break;
+						case "gacategory":
+							gaCategory = paramValue;
+							break;
+						case "gaaction":
+							gaAction = paramValue;
+							break;
 					}
 				}
 			});
@@ -124,11 +136,30 @@ WillStrohl.Widgets.ExternalLinks.prototype = {
 					if (image && ($this.find("img").length === 0))
 						$this.append($("<img/>").attr({ src: image, alt: altText, title: altText }));
 
-					if (cssClass)
-						$this.attr({ "class": cssClass });
+					if (cssClass != "")
+						$this.addClass(cssClass);
 
 					if (newWindow)
 						$this.attr({ target: "_blank" });
+
+					if (gaCategory != "") {
+						$this.click(function () {
+							var href = $this.attr("href");
+							var action = gaAction;
+							var label = href;
+							if (action == "") {
+								action = href;
+								label = null;
+							}
+
+							if (window._gaq)
+								_gaq.push(['_trackEvent', gaCategory, action, label]);
+							else if (window.pageTracker && pageTracker._trackEvent)
+								pageTracker._trackEvent(gaCategory, action, label);
+							else
+								alert("Google Analytics script not found");
+						});
+					}
 				}
 			});
 
