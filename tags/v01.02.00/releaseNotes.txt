@@ -1,0 +1,16 @@
+This release includes the following:<br />
+<ol>
+	<li>Addition of the Break Frames widget</li>
+	<li>Addition of the Modernizr widget</li>
+	<li>Registering Google Analytic Events in the External Links widget</li>
+	<li>Addition of the Confirmation Injector widget</li>
+	<li>Addition of the Cookie Checker widget</li>
+	<li>Addition of the Google Analytics Events widget</li>
+	<li>Marking external links with a CSS class name in the External Links widget</li>
+</ol>
+<br />
+Contributors of this open source and free project, include: 
+<a href="http://www.willstrohl.com" target="_blank">Will Strohl (a.k.a hismightiness)</a>, 
+<a href="http://www.dnngarden.com" target="_blank">Mark Allan (a.k.a MarkXA)</a>, and 
+<a href="http://www.schwingsoft.com/" target="_blank">Armand Datema (a.k.a nokiko)</a><br /><br />
+For support, questions, or suggestions, please use the <a href="http://dnnwidgets.codeplex.com" target="_blank">Widget Suite for DotNetNuke</a> website.
