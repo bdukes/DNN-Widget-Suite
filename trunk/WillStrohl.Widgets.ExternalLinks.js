@@ -2,7 +2,7 @@
 Will Strohl - http://www.WillStrohl.com
 Authors - Will Strohl, Mark Allan (http://www.dnngarden.com)
 Support - http://dnnwidgets.codeplex.com
-Copyright (c) 2010, Will Strohl
+Copyright (c) 2010-2011, Will Strohl
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted 

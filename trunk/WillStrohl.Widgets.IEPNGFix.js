@@ -4,7 +4,7 @@ Widget Suite for DotNetNuke
 Author - Mark Allan (http://www.dnngarden.com)
 Project Contributors - Will Strohl (http://www.WillStrohl.com), Mark Allan (http://www.dnngarden.com), Armand Datema (http://www.schwingsoft.com)
 Support - http://dnnwidgets.codeplex.com
-Copyright (c) 2010, Will Strohl
+Copyright (c) 2010-2011, Will Strohl
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted 
