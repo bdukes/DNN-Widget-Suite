@@ -1,12 +1,12 @@
 This release includes the following:<br />
 <ol>
-	<li>Enhancements to the External Links widget</li>
-	<li>Addition of the Icon Switcher widget</li>
-	<li>Addition of the Carousel widget</li>
-	<li>Addition of the IEPNGFix widget</li>
-	<li>Addition of the CSS3PIE widget</li>
-	<li>Addition of an example icon set</li>
-	<li>Minified deployment scripts for deployment &amp; created different pacakges for download size concerns</li>
+	<li>Addition of the Break Frames widget</li>
+	<li>Addition of the Modernizr widget</li>
+	<li>Registering Google Analytic Events in the External Links widget</li>
+	<li>Addition of the Confirmation Injector widget</li>
+	<li>Addition of the Cookie Checker widget</li>
+	<li>Addition of the Google Analytics Events widget</li>
+	<li>Marking external links with a CSS class name in the External Links widget</li>
 </ol>
 <br />
 Contributors of this open source and free project, include: 
