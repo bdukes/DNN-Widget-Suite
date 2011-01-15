@@ -57,7 +57,7 @@ EXAMPLE:
 	<param name="newWindow" value="true" />
 	<param name="selector" value="#wrapper" />
 	<param name="gaCategory" value="Outbound" />
-	<param name="gaCategory" value="Click" />
+	<param name="gaAction" value="Click" />
 </object>
 */
 
