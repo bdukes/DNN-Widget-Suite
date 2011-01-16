@@ -1,5 +1,5 @@
 /*
-Cookie Checker Widget
+Break Frames Widget
 Widget Suite for DotNetNuke
 Author - Will Strohl (http://www.WillStrohl.com)
 Project Contributors - Will Strohl (http://www.WillStrohl.com), Mark Allan (http://www.dnngarden.com), Armand Datema (http://www.schwingsoft.com)
