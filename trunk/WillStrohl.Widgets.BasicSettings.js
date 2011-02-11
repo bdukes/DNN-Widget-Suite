@@ -70,6 +70,8 @@ WillStrohl.Widgets.BasicSettings.prototype =
 
         (function ($) {
             // Default parameters
+            var enableText = 'Remove Advanced Settings';
+            var disableText = 'Show Advanced Settings';
             var debugEnabled = 'false';
 
             // Parse parameters
@@ -79,33 +81,131 @@ WillStrohl.Widgets.BasicSettings.prototype =
                     var paramValue = this.value;
 
                     switch (paramName) {
+                        case 'enabletext': enableText = paramValue; break;
+                        case 'disabletext': disableText = paramValue; break;
                         case 'debug': debugEnabled = paramValue; break;
                     }
                 }
             });
 
-            /* INITIATE THE DEBUGGER */
-            var runDebug = false;
-            if (debugEnabled == 'true') runDebug = true;
+            try {
 
-            if (runDebug) {
-                if ($('#DebugConsole').length == 0) $('body').append('<div id="DebugConsole" class="DebugConsole"></div>');
-                $DEBUGLINE('<span class="Head">Widget Suite: BasicSettings Debug Report</span><br />');
-                $DEBUGLINE('<span class="SubHead">Parameters Values:</span>');
-                $DEBUGLINE('debug = ' + debugEnabled);
-                $DEBUGLINE('<br /><span class="SubHead">Activity Log:</span>');
+                var valCookie = getWNSCookie('BasicSettingsWidgetButton');
+                var blnEnabled = true;
+
+                if (valCookie != null && valCookie != '') {
+                    if (valCookie == 'true') {
+                        blnEnabled = true;
+                    } else {
+                        blnEnabled = false;
+                    }
+                }
+
+                /* INITIATE THE DEBUGGER */
+                var runDebug = false;
+                if (debugEnabled == 'true') runDebug = true;
+
+                if (runDebug) {
+                    if ($('#DebugConsole').length == 0) $('body').append('<div id="DebugConsole" class="DebugConsole"></div>');
+                    $DEBUGLINE('<span class="Head">Widget Suite: BasicSettings Debug Report</span><br />');
+                    $DEBUGLINE('<span class="SubHead">Parameters Values:</span>');
+                    $DEBUGLINE('debug = ' + debugEnabled);
+                    $DEBUGLINE('<br /><span class="SubHead">Activity Log:</span>');
+                }
+
+                /* BEGIN Widget Code */
+
+                if (blnEnabled) {
+
+                    $DEBUGLINE('Basic Settings Widget Enabled');
+
+                    $DEBUGLINE('MODULE SETTINGS: Remove Advanced Settings section');
+                    $('table[id$=\'_ModuleSettings_tblSecurity\']').prev().hide().end().hide();
+
+                    $DEBUGLINE('MODULE SETTINGS: Remove Added to Pages section');
+                    $('table[id$=\'_ModuleSettings_tblInstalledOn\']').prev().hide().end().hide();
+
+                    $DEBUGLINE('MODULE SETTINGS: Remove Page Settings section');
+                    $('table[id$=\'_ModuleSettings_tblPage\']').prev().prev().hide().end().hide().end().hide();
+
+                    $DEBUGLINE('PAGE SETTINGS: Remove Page Settings section');
+                    $('table#dnn_ctr_ManageTabs_tblAdvanced').prev().prev().hide().end().hide().end().hide();
+
+                    $DEBUGLINE('SITE SETTINGS: Remove Site Details > GUID');
+                    $('table[id$=\'_SiteSettings_tblSite\'] tr:nth-child(5)').children().hide();
+
+                    $DEBUGLINE('SITE SETTINGS: Remove Marketing section advanced fields');
+                    $('table[id$=\'_SiteSettings_tblMarketing\'] tr:nth-child(4), table[id$=\'_SiteSettings_tblMarketing\'] tr:nth-child(3), table[id$=\'_SiteSettings_tblMarketing\'] tr:nth-child(2)').children().hide();
+
+                    $DEBUGLINE('SITE SETTINGS: Remove Appearance > Skins section');
+                    $('table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(7), table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(6), table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(5), table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(4)').children().hide();
+
+                    $DEBUGLINE('SITE SETTINGS: Remove Appearance > Body Background section');
+                    $('table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(2)').children().hide();
+
+                    $DEBUGLINE('SITE SETTINGS: Remove Advanced Settings section');
+                    $('table[id$=\'_SiteSettings_tblAdvanced\']').prev().prev().hide().end().hide().end().hide();
+
+                    $DEBUGLINE('SITE SETTINGS: Remove Stylesheet Editor section');
+                    $('table[id$=\'_SiteSettings_tblStylesheet\']').prev().prev().hide().end().hide().end().hide();
+
+                } else {
+                    $DEBUGLINE('Basic Settings Widget Disabled');
+                }
+
+                $DEBUGLINE('Creating the UI');
+
+                var div = document.createElement('div');
+                div.setAttribute('id', 'BasicSettingsButtonWrapper');
+                div.setAttribute('class', 'BasicSettingsButtonWrapper');
+
+                WillStrohl.Widgets.BasicSettings.callBaseMethod(this, "render", [div]);
+
+                $DEBUGLINE('UI Created');
+                /*
+                $('.BasicSettingsButtonWrapper').prepend('<a id="lnkToggleBasicSettings" href="#" class="wgt-basicsettings-btn ui-state-default ui-corner-all">replace me</a>');
+                if (blnEnabled) {
+                    $('#lnkToggleBasicSettings').text(disableText);
+                } else {
+                    $('#lnkToggleBasicSettings').text(enableText);
+                }
+
+                $('#lnkToggleBasicSettings').live('click', function () {
+                    var strCookie = getWNSCookie('BasicSettingsWidgetButton');
+                    var blnEnabledText = true;
+
+                    if (strCookie != null && strCookie != '') {
+                        if (strCookie == 'true') {
+                            blnEnabledText = true;
+                        } else {
+                            blnEnabledText = false;
+                        }
+                    }
+
+                    if (blnEnabledText) {
+                        setWNSCookie('BasicSettingsWidgetButton', 'true', 365);
+                        $('#lnkToggleBasicSettings').text(disableText);
+                    } else {
+                        setWNSCookie('BasicSettingsWidgetButton', 'false', 365);
+                        $('#lnkToggleBasicSettings').text(enableText);
+                    }
+                });
+                */
+                /* END Widget Code */
+
+                if (runDebug) $DEBUGLINE('<br /><span class="NormalRed">Widget Suite: BasicSettings Debug Report Complete</span>');
+
+            } catch (e) {
+                alert('An Error Occurred: ' + e);
             }
-
-            /* BEGIN Widget Code */
-
-            /* END Widget Code */
-
-            if (runDebug) $DEBUGLINE('<br /><span class="NormalRed">Widget Suite: BasicSettings Debug Report Complete</span>');
 
         })(jQuery);
     }
     // END: render
 }
+
+function setWNSCookie(c_name, value, expiredays) { var exdate = new Date(); exdate.setDate(exdate.getDate() + expiredays); document.cookie = c_name + '=' + escape(value) + ((expiredays == null) ? '' : ';expires=' + exdate.toGMTString()); }
+function getWNSCookie(c_name) { if (document.cookie.length > 0) { c_start = document.cookie.indexOf(c_name + '='); if (c_start != -1) { c_start = c_start + c_name.length + 1; c_end = document.cookie.indexOf(';', c_start); if (c_end == -1) c_end = document.cookie.length; return unescape(document.cookie.substring(c_start, c_end)); } } return ''; }
 
 WillStrohl.Widgets.BasicSettings.inheritsFrom(DotNetNuke.UI.WebControls.Widgets.BaseWidget);
 WillStrohl.Widgets.BasicSettings.registerClass("WillStrohl.Widgets.BasicSettings", DotNetNuke.UI.WebControls.Widgets.BaseWidget);
