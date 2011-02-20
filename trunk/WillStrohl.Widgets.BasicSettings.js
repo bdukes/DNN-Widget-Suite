@@ -196,7 +196,7 @@ WillStrohl.Widgets.BasicSettings.prototype =
                 if (runDebug) $DEBUGLINE('<br /><span class="NormalRed">Widget Suite: BasicSettings Debug Report Complete</span>');
 
             } catch (e) {
-                alert('An Error Occurred: ' + e);
+                //alert('An Error Occurred: ' + e);
             }
 
         })(jQuery);
