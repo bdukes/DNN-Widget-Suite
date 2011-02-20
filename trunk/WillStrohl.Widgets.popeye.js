@@ -1,7 +1,10 @@
 /*
-Will Strohl - http://www.WillStrohl.com
-Support - http://dnnwidgets.codeplex.com
-Copyright (c) 2010, Will Strohl
+Popeye Widget
+Widget Suite for DotNetNuke
+Author - Armand Datema (http://www.schwingsoft.com)
+Project Contributors - Will Strohl (http://www.WillStrohl.com), Mark Allan (http://www.dnngarden.com), Armand Datema (http://www.schwingsoft.com)
+Support - http://dnnwidgets.com
+Copyright (c) 2011, Will Strohl
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted 
