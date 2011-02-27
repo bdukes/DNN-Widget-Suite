@@ -152,6 +152,8 @@ WillStrohl.Widgets.SyntaxHighlighter.prototype =
 
                 });
 
+                jQuery('div.syntaxhighlighter').parent().css('height', 'auto');
+
             }
             catch (e) {
                 if (runDebug) $DEBUGLINE('<span class="NormalRed">' + e + '</span>');
