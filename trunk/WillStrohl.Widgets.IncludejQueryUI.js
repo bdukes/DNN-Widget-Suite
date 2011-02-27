@@ -116,24 +116,24 @@ WillStrohl.Widgets.IncludejQueryUI.prototype =
                     http://ajax.googleapis.com/ajax/libs/jqueryui/{version-number}/themes/{theme-name}/jquery-ui.css
 
                     EXAMPLE CSS FILE LOCATIONS:
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/black-tie/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/blitzer/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/cupertino/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/dot-luv/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/excite-bike/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/hot-sneaks/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/humanity/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/mint-choc/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/redmond/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/smoothness/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/south-street/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/start/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/swanky-purse/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/trontastic/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/ui-darkness/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/ui-lightness/jquery-ui.css
-                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/vader/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/base/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/black-tie/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/blitzer/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/cupertino/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/dot-luv/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/excite-bike/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/hot-sneaks/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/humanity/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/mint-choc/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/redmond/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/smoothness/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/south-street/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/start/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/swanky-purse/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/trontastic/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-darkness/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-lightness/jquery-ui.css
+                    http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/vader/jquery-ui.css
                     */
                     if (runDebug) $DEBUGLINE('Loading jQueryUI CSS File');
                     $DEBUGLINE('File to Load: http://ajax.googleapis.com/ajax/libs/jqueryui/' + version + '/themes/' + theme + '/jquery-ui.css');
