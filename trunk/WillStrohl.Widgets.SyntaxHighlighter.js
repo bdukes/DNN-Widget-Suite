@@ -69,7 +69,7 @@ WillStrohl.Widgets.SyntaxHighlighter.prototype =
 
         (function ($) {
             // Default parameters
-            var brushes = '';
+            var theme = 'Default';
             var debugEnabled = 'false';
 
             // Parse parameters
@@ -79,6 +79,7 @@ WillStrohl.Widgets.SyntaxHighlighter.prototype =
                     var paramValue = this.value;
 
                     switch (paramName) {
+                        case 'theme': theme = paramValue; break;
                         case 'debug': debugEnabled = paramValue; break;
                     }
                 }
@@ -92,6 +93,7 @@ WillStrohl.Widgets.SyntaxHighlighter.prototype =
                 if ($('#DebugConsole').length == 0) $('body').append('<div id="DebugConsole" class="DebugConsole"></div>');
                 $DEBUGLINE('<span class="Head">Widget Suite: SyntaxHighlighter Debug Report</span><br />');
                 $DEBUGLINE('<span class="SubHead">Parameters Values:</span>');
+                $DEBUGLINE('theme = ' + theme);
                 $DEBUGLINE('debug = ' + debugEnabled);
                 $DEBUGLINE('<br /><span class="SubHead">Activity Log:</span>');
             }
@@ -106,14 +108,18 @@ WillStrohl.Widgets.SyntaxHighlighter.prototype =
                 jQuery('head').append('<link id="lnkShCore" />');
                 jQuery('#lnkShCore').attr({ rel: "stylesheet", type: "text/css", href: $dnn.baseResourcesUrl + 'Widgets/User/WillStrohl/js/SyntaxHighlighter/styles/shCore.css' });
                 jQuery('head').append('<link id="lnkShThemeDefault" />');
-                jQuery('#lnkShThemeDefault').attr({ rel: "stylesheet", type: "text/css", href: $dnn.baseResourcesUrl + 'Widgets/User/WillStrohl/js/SyntaxHighlighter/styles/shThemeDefault.css' });
+                if (theme != 'Default' && theme != 'Django' && theme != 'Eclipse' && theme != 'Emacs' && theme != 'FadeToGrey' && theme != 'Midnight' && theme != 'RDark') {
+                    theme = 'Default';
+                }
+                if (runDebug) $DEBUGLINE('Loading Theme: ' + $dnn.baseResourcesUrl + 'Widgets/User/WillStrohl/js/SyntaxHighlighter/styles/shTheme' + theme + '.css');
+                jQuery('#lnkShThemeDefault').attr({ rel: "stylesheet", type: "text/css", href: $dnn.baseResourcesUrl + 'Widgets/User/WillStrohl/js/SyntaxHighlighter/styles/shTheme' + theme + '.css' });
 
                 if (runDebug) $DEBUGLINE('Loading JavaScript Files');
 
-                if (runDebug) $DEBUGLINE('Loading: ' + $dnn.baseResourcesUrl + 'Widgets/User/WillStrohl/js/SyntaxHighlighter/scripts/shCore.js');
+                if (runDebug) $DEBUGLINE('Loading Script: ' + $dnn.baseResourcesUrl + 'Widgets/User/WillStrohl/js/SyntaxHighlighter/scripts/shCore.js');
                 jQuery.getScript($dnn.baseResourcesUrl + 'Widgets/User/WillStrohl/js/SyntaxHighlighter/scripts/shCore.js');
 
-                if (runDebug) $DEBUGLINE('Loading: ' + $dnn.baseResourcesUrl + 'Widgets/User/WillStrohl/js/SyntaxHighlighter/scripts/shAutoloader.js');
+                if (runDebug) $DEBUGLINE('Loading Script: ' + $dnn.baseResourcesUrl + 'Widgets/User/WillStrohl/js/SyntaxHighlighter/scripts/shAutoloader.js');
                 jQuery.getScript($dnn.baseResourcesUrl + 'Widgets/User/WillStrohl/js/SyntaxHighlighter/scripts/shAutoloader.js', function () {
 
                     /* add the supported brushes */
@@ -147,6 +153,7 @@ WillStrohl.Widgets.SyntaxHighlighter.prototype =
 
                     /* highlight the code */
                     if (runDebug) $DEBUGLINE('Calling SyntaxHighlighter.all();');
+                    SyntaxHighlighter.config.stripBrs = true;
                     SyntaxHighlighter.all();
                     if (runDebug) $DEBUGLINE('Called SyntaxHighlighter.all();');
 
@@ -168,8 +175,9 @@ WillStrohl.Widgets.SyntaxHighlighter.prototype =
 
 function path() {
     var args = arguments, result = [];
-    for(var i = 0; i < args.length; i++) result.push(args[i].replace('@', '/Resources/Widgets/User/WillStrohl/js/SyntaxHighlighter/scripts/'));
+    for (var i = 0; i < args.length; i++) result.push(args[i].replace('@', $dnn.baseResourcesUrl + 'Widgets/User/WillStrohl/js/SyntaxHighlighter/scripts/'));
     return result;
+    /*console.log(result);*/
 };
 
 WillStrohl.Widgets.SyntaxHighlighter.inheritsFrom(DotNetNuke.UI.WebControls.Widgets.BaseWidget);
