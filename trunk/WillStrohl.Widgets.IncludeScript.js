@@ -105,11 +105,13 @@ WillStrohl.Widgets.IncludeScript.prototype =
                     var files = file.split(';');
 
                     for (i = 0; i < files.length; i++) {
-                        if (files[i].substr(-3) == '.js' || files[i].substr(-4) == '.css') $.getScript(files[i]);
+                        if (files[i].substr(-3) == '.js') $.getScript(files[i]);
                     }
                 } else { 
-                    file.substr(-3) == '.js' || file.substr(-4) == '.css') $.getScript(file);
+                    if (file.substr(-3) == '.js') $.getScript(file);
                 }
+            } else {
+                alert('The IncludeScript Widget requires that a file parameter is specified.');
             }
 
             if (runDebug) $DEBUGLINE('<br /><span class="NormalRed">Widget Suite: IncludeScript Debug Report Complete</span>');
