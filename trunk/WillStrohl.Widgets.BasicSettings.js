@@ -155,42 +155,11 @@ WillStrohl.Widgets.BasicSettings.prototype =
 
                 $DEBUGLINE('Creating the UI');
 
-                var div = document.createElement('div');
-                div.setAttribute('id', 'BasicSettingsButtonWrapper');
-                div.setAttribute('class', 'BasicSettingsButtonWrapper');
-
-                WillStrohl.Widgets.BasicSettings.callBaseMethod(this, "render", [div]);
+                jQuery(widget).append('<div id="BasicSettingsButtonWrapper" class="BasicSettingsButtonWrapper"></div>');
+                buildUI(blnEnabled, disableText, enableText);
 
                 $DEBUGLINE('UI Created');
-                /*
-                $('.BasicSettingsButtonWrapper').prepend('<a id="lnkToggleBasicSettings" href="#" class="wgt-basicsettings-btn ui-state-default ui-corner-all">replace me</a>');
-                if (blnEnabled) {
-                    $('#lnkToggleBasicSettings').text(disableText);
-                } else {
-                    $('#lnkToggleBasicSettings').text(enableText);
-                }
 
-                $('#lnkToggleBasicSettings').live('click', function () {
-                    var strCookie = getWNSCookie('BasicSettingsWidgetButton');
-                    var blnEnabledText = true;
-
-                    if (strCookie != null && strCookie != '') {
-                        if (strCookie == 'true') {
-                            blnEnabledText = true;
-                        } else {
-                            blnEnabledText = false;
-                        }
-                    }
-
-                    if (blnEnabledText) {
-                        setWNSCookie('BasicSettingsWidgetButton', 'true', 365);
-                        $('#lnkToggleBasicSettings').text(disableText);
-                    } else {
-                        setWNSCookie('BasicSettingsWidgetButton', 'false', 365);
-                        $('#lnkToggleBasicSettings').text(enableText);
-                    }
-                });
-                */
                 /* END Widget Code */
 
                 if (runDebug) $DEBUGLINE('<br /><span class="NormalRed">Widget Suite: BasicSettings Debug Report Complete</span>');
@@ -202,6 +171,38 @@ WillStrohl.Widgets.BasicSettings.prototype =
         })(jQuery);
     }
     // END: render
+}
+
+function buildUI(blnEnabled, disableText, enableText) {
+
+    $('.BasicSettingsButtonWrapper').prepend('<a id="lnkToggleBasicSettings" href="#" class="wgt-basicsettings-btn ui-state-default ui-corner-all">replace me</a>');
+    if (blnEnabled) {
+        $('#lnkToggleBasicSettings').text(disableText);
+    } else {
+        $('#lnkToggleBasicSettings').text(enableText);
+    }
+
+    $('#lnkToggleBasicSettings').live('click', function () {
+        var strCookie = getWNSCookie('BasicSettingsWidgetButton');
+        var blnEnabledText = true;
+
+        if (strCookie != null && strCookie != '') {
+            if (strCookie == 'true') {
+                blnEnabledText = true;
+            } else {
+                blnEnabledText = false;
+            }
+        }
+
+        if (blnEnabledText) {
+            setWNSCookie('BasicSettingsWidgetButton', 'true', 365);
+            $('#lnkToggleBasicSettings').text(disableText);
+        } else {
+            setWNSCookie('BasicSettingsWidgetButton', 'false', 365);
+            $('#lnkToggleBasicSettings').text(enableText);
+        }
+    });
+
 }
 
 function setWNSCookie(c_name, value, expiredays) { var exdate = new Date(); exdate.setDate(exdate.getDate() + expiredays); document.cookie = c_name + '=' + escape(value) + ((expiredays == null) ? '' : ';expires=' + exdate.toGMTString()); }
