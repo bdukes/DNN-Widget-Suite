@@ -7,6 +7,7 @@ This release includes the following:<br />
 	<li>Addition of the Cookie Checker widget</li>
 	<li>Addition of the Google Analytics Events widget</li>
 	<li>Marking external links with a CSS class name in the External Links widget</li>
+	<li>Addition of the Facebook widget</li>
 </ol>
 <br />
 Contributors of this open source and free project, include: 
