@@ -31,9 +31,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ''' -----------------------------------------------------------------------------
 ''' <summary>
-''' This widget script allows you to remove advanced settings from your 
-''' DotNetNuke site.
-''' not enabled.
+''' This widget script allows you to remove advanced settings from your DotNetNuke site.
 ''' </summary>
 ''' <version>01.00.00</version>
 ''' <remarks>
@@ -70,8 +68,8 @@ WillStrohl.Widgets.BasicSettings.prototype =
 
         (function ($) {
             // Default parameters
-            var enableText = 'Remove Advanced Settings';
-            var disableText = 'Show Advanced Settings';
+            /*var enableText = 'Remove Advanced Settings';
+            var disableText = 'Show Advanced Settings';*/
             var debugEnabled = 'false';
 
             // Parse parameters
@@ -81,8 +79,8 @@ WillStrohl.Widgets.BasicSettings.prototype =
                     var paramValue = this.value;
 
                     switch (paramName) {
-                        case 'enabletext': enableText = paramValue; break;
-                        case 'disabletext': disableText = paramValue; break;
+                        /*case 'enabletext': enableText = paramValue; break;
+                        case 'disabletext': disableText = paramValue; break;*/
                         case 'debug': debugEnabled = paramValue; break;
                     }
                 }
@@ -90,7 +88,7 @@ WillStrohl.Widgets.BasicSettings.prototype =
 
             try {
 
-                var valCookie = getWNSCookie('BasicSettingsWidgetButton');
+                /*var valCookie = getWNSCookie('BasicSettingsWidgetButton');
                 var blnEnabled = true;
 
                 if (valCookie != null && valCookie != '') {
@@ -99,7 +97,7 @@ WillStrohl.Widgets.BasicSettings.prototype =
                     } else {
                         blnEnabled = false;
                     }
-                }
+                }*/
 
                 /* INITIATE THE DEBUGGER */
                 var runDebug = false;
@@ -115,50 +113,81 @@ WillStrohl.Widgets.BasicSettings.prototype =
 
                 /* BEGIN Widget Code */
 
+                /*if (blnEnabled) {*/
+
+                if (runDebug) $DEBUGLINE('Basic Settings Widget Enabled');
+
+                if (runDebug) $DEBUGLINE('MODULE SETTINGS: Remove Advanced Settings section');
+                $('table[id$=\'_ModuleSettings_tblSecurity\']').prev().hide().end().hide();
+
+                if (runDebug) $DEBUGLINE('MODULE SETTINGS: Remove Added to Pages section');
+                $('table[id$=\'_ModuleSettings_tblInstalledOn\']').prev().hide().end().hide();
+
+                if (runDebug) $DEBUGLINE('MODULE SETTINGS: Remove Page Settings section');
+                $('table[id$=\'_ModuleSettings_tblPage\']').prev().prev().hide().end().hide().end().hide();
+
+                if (runDebug) $DEBUGLINE('PAGE SETTINGS: Remove Page Settings section');
+                $('table#dnn_ctr_ManageTabs_tblAdvanced').prev().prev().hide().end().hide().end().hide();
+
+                if (runDebug) $DEBUGLINE('SITE SETTINGS: Remove Site Details > GUID');
+                $('table[id$=\'_SiteSettings_tblSite\'] tr:nth-child(5)').children().hide();
+
+                if (runDebug) $DEBUGLINE('SITE SETTINGS: Remove Marketing section advanced fields');
+                $('table[id$=\'_SiteSettings_tblMarketing\'] tr:nth-child(4), table[id$=\'_SiteSettings_tblMarketing\'] tr:nth-child(3), table[id$=\'_SiteSettings_tblMarketing\'] tr:nth-child(2)').children().hide();
+
+                if (runDebug) $DEBUGLINE('SITE SETTINGS: Remove Appearance > Skins section');
+                $('table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(7), table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(6), table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(5), table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(4)').children().hide();
+
+                if (runDebug) $DEBUGLINE('SITE SETTINGS: Remove Appearance > Body Background section');
+                $('table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(2)').children().hide();
+
+                if (runDebug) $DEBUGLINE('SITE SETTINGS: Remove Advanced Settings section');
+                $('table[id$=\'_SiteSettings_tblAdvanced\']').prev().prev().hide().end().hide().end().hide();
+
+                if (runDebug) $DEBUGLINE('SITE SETTINGS: Remove Stylesheet Editor section');
+                $('table[id$=\'_SiteSettings_tblStylesheet\']').prev().prev().hide().end().hide().end().hide();
+
+                /*} else {
+                    if (runDebug) $DEBUGLINE('Basic Settings Widget Disabled');
+                }*/
+
+                /*
+                if (runDebug) $DEBUGLINE('Creating the UI');
+
+                jQuery(widget).before('<div id="BasicSettingsButtonWrapper" class="BasicSettingsButtonWrapper"></div>');
+
+                $('.BasicSettingsButtonWrapper').prepend('<a id="lnkToggleBasicSettings" href="#" class="wgt-basicsettings-btn ui-state-default ui-corner-all">replace me</a>');
                 if (blnEnabled) {
-
-                    $DEBUGLINE('Basic Settings Widget Enabled');
-
-                    $DEBUGLINE('MODULE SETTINGS: Remove Advanced Settings section');
-                    $('table[id$=\'_ModuleSettings_tblSecurity\']').prev().hide().end().hide();
-
-                    $DEBUGLINE('MODULE SETTINGS: Remove Added to Pages section');
-                    $('table[id$=\'_ModuleSettings_tblInstalledOn\']').prev().hide().end().hide();
-
-                    $DEBUGLINE('MODULE SETTINGS: Remove Page Settings section');
-                    $('table[id$=\'_ModuleSettings_tblPage\']').prev().prev().hide().end().hide().end().hide();
-
-                    $DEBUGLINE('PAGE SETTINGS: Remove Page Settings section');
-                    $('table#dnn_ctr_ManageTabs_tblAdvanced').prev().prev().hide().end().hide().end().hide();
-
-                    $DEBUGLINE('SITE SETTINGS: Remove Site Details > GUID');
-                    $('table[id$=\'_SiteSettings_tblSite\'] tr:nth-child(5)').children().hide();
-
-                    $DEBUGLINE('SITE SETTINGS: Remove Marketing section advanced fields');
-                    $('table[id$=\'_SiteSettings_tblMarketing\'] tr:nth-child(4), table[id$=\'_SiteSettings_tblMarketing\'] tr:nth-child(3), table[id$=\'_SiteSettings_tblMarketing\'] tr:nth-child(2)').children().hide();
-
-                    $DEBUGLINE('SITE SETTINGS: Remove Appearance > Skins section');
-                    $('table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(7), table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(6), table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(5), table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(4)').children().hide();
-
-                    $DEBUGLINE('SITE SETTINGS: Remove Appearance > Body Background section');
-                    $('table[id$=\'_SiteSettings_tblAppearance\'] tr:nth-child(2)').children().hide();
-
-                    $DEBUGLINE('SITE SETTINGS: Remove Advanced Settings section');
-                    $('table[id$=\'_SiteSettings_tblAdvanced\']').prev().prev().hide().end().hide().end().hide();
-
-                    $DEBUGLINE('SITE SETTINGS: Remove Stylesheet Editor section');
-                    $('table[id$=\'_SiteSettings_tblStylesheet\']').prev().prev().hide().end().hide().end().hide();
-
+                    $('#lnkToggleBasicSettings').text(disableText);
                 } else {
-                    $DEBUGLINE('Basic Settings Widget Disabled');
+                    $('#lnkToggleBasicSettings').text(enableText);
                 }
 
-                $DEBUGLINE('Creating the UI');
+                $('#lnkToggleBasicSettings').live('click', function () {
+                    var strCookie = getWNSCookie('BasicSettingsWidgetButton');
+                    var blnEnabledText = true;
 
-                jQuery(widget).append('<div id="BasicSettingsButtonWrapper" class="BasicSettingsButtonWrapper"></div>');
-                buildUI(blnEnabled, disableText, enableText);
+                    if (strCookie != null && strCookie != '') {
+                        if (strCookie == 'true') {
+                            blnEnabledText = true;
+                        } else {
+                            blnEnabledText = false;
+                        }
+                    }
 
-                $DEBUGLINE('UI Created');
+                    if (blnEnabledText) {
+                        setWNSCookie('BasicSettingsWidgetButton', 'true', 365);
+                        $('#lnkToggleBasicSettings').text(disableText);
+                        basicSettings(blnEnabledText, runDebug);
+                    } else {
+                        setWNSCookie('BasicSettingsWidgetButton', 'false', 365);
+                        $('#lnkToggleBasicSettings').text(enableText);
+                        basicSettings(blnEnabledText, runDebug);
+                    }
+                });
+
+                if (runDebug) $DEBUGLINE('UI Created');
+                */
 
                 /* END Widget Code */
 
@@ -166,43 +195,12 @@ WillStrohl.Widgets.BasicSettings.prototype =
 
             } catch (e) {
                 //alert('An Error Occurred: ' + e);
+                if (runDebug) $DEBUGLINE('<br /><span class="NormalRed">' + e.Message + '</span>');
             }
 
         })(jQuery);
     }
     // END: render
-}
-
-function buildUI(blnEnabled, disableText, enableText) {
-
-    $('.BasicSettingsButtonWrapper').prepend('<a id="lnkToggleBasicSettings" href="#" class="wgt-basicsettings-btn ui-state-default ui-corner-all">replace me</a>');
-    if (blnEnabled) {
-        $('#lnkToggleBasicSettings').text(disableText);
-    } else {
-        $('#lnkToggleBasicSettings').text(enableText);
-    }
-
-    $('#lnkToggleBasicSettings').live('click', function () {
-        var strCookie = getWNSCookie('BasicSettingsWidgetButton');
-        var blnEnabledText = true;
-
-        if (strCookie != null && strCookie != '') {
-            if (strCookie == 'true') {
-                blnEnabledText = true;
-            } else {
-                blnEnabledText = false;
-            }
-        }
-
-        if (blnEnabledText) {
-            setWNSCookie('BasicSettingsWidgetButton', 'true', 365);
-            $('#lnkToggleBasicSettings').text(disableText);
-        } else {
-            setWNSCookie('BasicSettingsWidgetButton', 'false', 365);
-            $('#lnkToggleBasicSettings').text(enableText);
-        }
-    });
-
 }
 
 function setWNSCookie(c_name, value, expiredays) { var exdate = new Date(); exdate.setDate(exdate.getDate() + expiredays); document.cookie = c_name + '=' + escape(value) + ((expiredays == null) ? '' : ';expires=' + exdate.toGMTString()); }
