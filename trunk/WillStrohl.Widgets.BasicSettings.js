@@ -68,8 +68,6 @@ WillStrohl.Widgets.BasicSettings.prototype =
 
         (function ($) {
             // Default parameters
-            /*var enableText = 'Remove Advanced Settings';
-            var disableText = 'Show Advanced Settings';*/
             var debugEnabled = 'false';
 
             // Parse parameters
@@ -79,25 +77,12 @@ WillStrohl.Widgets.BasicSettings.prototype =
                     var paramValue = this.value;
 
                     switch (paramName) {
-                        /*case 'enabletext': enableText = paramValue; break;
-                        case 'disabletext': disableText = paramValue; break;*/
                         case 'debug': debugEnabled = paramValue; break;
                     }
                 }
             });
 
             try {
-
-                /*var valCookie = getWNSCookie('BasicSettingsWidgetButton');
-                var blnEnabled = true;
-
-                if (valCookie != null && valCookie != '') {
-                    if (valCookie == 'true') {
-                        blnEnabled = true;
-                    } else {
-                        blnEnabled = false;
-                    }
-                }*/
 
                 /* INITIATE THE DEBUGGER */
                 var runDebug = false;
@@ -112,8 +97,6 @@ WillStrohl.Widgets.BasicSettings.prototype =
                 }
 
                 /* BEGIN Widget Code */
-
-                /*if (blnEnabled) {*/
 
                 if (runDebug) $DEBUGLINE('Basic Settings Widget Enabled');
 
@@ -146,48 +129,6 @@ WillStrohl.Widgets.BasicSettings.prototype =
 
                 if (runDebug) $DEBUGLINE('SITE SETTINGS: Remove Stylesheet Editor section');
                 $('table[id$=\'_SiteSettings_tblStylesheet\']').prev().prev().hide().end().hide().end().hide();
-
-                /*} else {
-                    if (runDebug) $DEBUGLINE('Basic Settings Widget Disabled');
-                }*/
-
-                /*
-                if (runDebug) $DEBUGLINE('Creating the UI');
-
-                jQuery(widget).before('<div id="BasicSettingsButtonWrapper" class="BasicSettingsButtonWrapper"></div>');
-
-                $('.BasicSettingsButtonWrapper').prepend('<a id="lnkToggleBasicSettings" href="#" class="wgt-basicsettings-btn ui-state-default ui-corner-all">replace me</a>');
-                if (blnEnabled) {
-                    $('#lnkToggleBasicSettings').text(disableText);
-                } else {
-                    $('#lnkToggleBasicSettings').text(enableText);
-                }
-
-                $('#lnkToggleBasicSettings').live('click', function () {
-                    var strCookie = getWNSCookie('BasicSettingsWidgetButton');
-                    var blnEnabledText = true;
-
-                    if (strCookie != null && strCookie != '') {
-                        if (strCookie == 'true') {
-                            blnEnabledText = true;
-                        } else {
-                            blnEnabledText = false;
-                        }
-                    }
-
-                    if (blnEnabledText) {
-                        setWNSCookie('BasicSettingsWidgetButton', 'true', 365);
-                        $('#lnkToggleBasicSettings').text(disableText);
-                        basicSettings(blnEnabledText, runDebug);
-                    } else {
-                        setWNSCookie('BasicSettingsWidgetButton', 'false', 365);
-                        $('#lnkToggleBasicSettings').text(enableText);
-                        basicSettings(blnEnabledText, runDebug);
-                    }
-                });
-
-                if (runDebug) $DEBUGLINE('UI Created');
-                */
 
                 /* END Widget Code */
 
