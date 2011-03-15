@@ -65,40 +65,60 @@ WillStrohl.Widgets.Facebook = function (widget) {
 }
 
 WillStrohl.Widgets.Facebook.prototype = {
-	// BEGIN: render
-	render: function () {
-		var widget = this._widget;
-		var widgetBase = $dnn.baseResourcesUrl + "Widgets/User/WillStrohl/";
+    // BEGIN: render
+    render: function () {
+        var widget = this._widget;
+        var widgetBase = $dnn.baseResourcesUrl + "Widgets/User/WillStrohl/";
 
-		(function ($) {
-			var $widget = $(widget);
+        (function ($) {
+            var $widget = $(widget);
 
-			// Default parameters
-			var plugin = "like";
-			var params = {};
+            // Default parameters
+            var plugin = "like";
+            var ogTitle = document.title;
+            var ogType = '';
+            var ogUrl = document.location;
+            var ogImage = '';
+            var ogSiteName = '';
+            var fbAdmins = '';
+            var ogDescription = jQuery('meta[name=\'description\']').attr('content');
+            var params = {};
 
-			// Parse parameters
-			$widget.children("param").each(function () {
-				if (this.name && this.value) {
-					var paramName = this.name.toLowerCase().trim();
-					var paramValue = this.value.trim();
+            if (ogDescription == undefined) ogDescription = '';
 
-					switch (paramName) {
-						case "plugin":
-							plugin = paramValue;
-							break;
-						default:
-							params[paramName] = paramValue;
-							break;
-					}
-				}
-			});
+            // Parse parameters
+            $widget.children("param").each(function () {
+                if (this.name && this.value) {
+                    var paramName = this.name.toLowerCase().trim();
+                    var paramValue = this.value.trim();
 
-			// Replace widget declaration with XFBML
-			$(widget).replaceWith($("<fb:" + plugin + " />").attr(params));
-		})(jQuery);
-	}
-	// END: render
+                    switch (paramName) {
+                        case "ogtitle": ogTitle = paramValue; break;
+                        case "ogtype": ogType = paramValue; break;
+                        case "ogurl": ogUrl = paramValue; break;
+                        case "ogimage": ogImage = paramValue; break;
+                        case "ogsitename": ogSiteName = paramValue; break;
+                        case "fbadmins": fbAdmins = paramValue; break;
+                        case "ogdescription": ogDescription = paramValue; break;
+                        case "plugin": plugin = paramValue; break;
+                        default: params[paramName] = paramValue; break;
+                    }
+                }
+            });
+
+            if (ogTitle != '') jQuery('head').append('<meta property="og:title" content="' + ogTitle + '"/>');
+            if (ogType != '') jQuery('head').append('<meta property="og:type" content="' + ogType + '"/>');
+            if (ogUrl != '') jQuery('head').append('<meta property="og:url" content="' + ogUrl + '"/>');
+            if (ogImage != '') jQuery('head').append('<meta property="og:image" content="' + ogImage + '"/>');
+            if (ogSiteName != '') jQuery('head').append('<meta property="og:site_name" content="' + ogSiteName + '"/>');
+            if (fbAdmins != '') jQuery('head').append('<meta property="fb:admins" content="' + fbAdmins + '"/>');
+            if (ogDescription != '') jQuery('head').append('<meta property="og:description" content="' + ogDescription + '"/>');
+
+            // Replace widget declaration with XFBML
+            $(widget).replaceWith($("<fb:" + plugin + " />").attr(params));
+        })(jQuery);
+    }
+    // END: render
 }
 
 WillStrohl.Widgets.Facebook.inheritsFrom(DotNetNuke.UI.WebControls.Widgets.BaseWidget);
