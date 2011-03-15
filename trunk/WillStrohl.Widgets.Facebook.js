@@ -108,14 +108,14 @@ WillStrohl.Widgets.Facebook.prototype = {
                 }
             });
 
-            if (ogTitle != '' && jQuery('meta[property=\'og:title\'']).length == 0) jQuery('head').append('<meta property="og:title" content="' + ogTitle + '"/>');
-            if (ogType != '' && jQuery('meta[property=\'og:type\'']).length == 0) jQuery('head').append('<meta property="og:type" content="' + ogType + '"/>');
-            if (ogUrl != '' && jQuery('meta[property=\'og:url\'']).length == 0) jQuery('head').append('<meta property="og:url" content="' + ogUrl + '"/>');
-            if (ogImage != '' && jQuery('meta[property=\'og:image\'']).length == 0) jQuery('head').append('<meta property="og:image" content="' + ogImage + '"/>');
-            if (ogSiteName != '' && jQuery('meta[property=\'og:site_name\'']).length == 0) jQuery('head').append('<meta property="og:site_name" content="' + ogSiteName + '"/>');
-            if (fbAdmins != '' && jQuery('meta[property=\'fb:admins\'']).length == 0) jQuery('head').append('<meta property="fb:admins" content="' + fbAdmins + '"/>');
-            if (fbAppId != '' && jQuery('meta[property=\'fb:app_id\'']).length == 0) jQuery('head').append('<meta property="fb:app_id" content="' + fbAdmins + '"/>');
-            if (ogDescription != '' && jQuery('meta[property=\'og:description\'']).length == 0) jQuery('head').append('<meta property="og:description" content="' + ogDescription + '"/>');
+            if (ogTitle != '' && jQuery('meta[property=\'og:title\']').length == 0) jQuery('head').append('<meta property="og:title" content="' + ogTitle + '"/>');
+            if (ogType != '' && jQuery('meta[property=\'og:type\']').length == 0) jQuery('head').append('<meta property="og:type" content="' + ogType + '"/>');
+            if (ogUrl != '' && jQuery('meta[property=\'og:url\']').length == 0) jQuery('head').append('<meta property="og:url" content="' + ogUrl + '"/>');
+            if (ogImage != '' && jQuery('meta[property=\'og:image\']').length == 0) jQuery('head').append('<meta property="og:image" content="' + ogImage + '"/>');
+            if (ogSiteName != '' && jQuery('meta[property=\'og:site_name\']').length == 0) jQuery('head').append('<meta property="og:site_name" content="' + ogSiteName + '"/>');
+            if (fbAdmins != '' && jQuery('meta[property=\'fb:admins\']').length == 0) jQuery('head').append('<meta property="fb:admins" content="' + fbAdmins + '"/>');
+            if (fbAppId != '' && jQuery('meta[property=\'fb:app_id\']').length == 0) jQuery('head').append('<meta property="fb:app_id" content="' + fbAdmins + '"/>');
+            if (ogDescription != '' && jQuery('meta[property=\'og:description\']').length == 0) jQuery('head').append('<meta property="og:description" content="' + ogDescription + '"/>');
 
             // Replace widget declaration with XFBML
             $(widget).replaceWith($("<fb:" + plugin + " />").attr(params));
