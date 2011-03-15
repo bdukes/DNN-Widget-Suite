@@ -36,7 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ''' </summary>
 ''' <version>01.00.00</version>
 ''' <remarks>
-''' [01.00.00] this widget needs to have the following script added in the page header tags <script src="Resources/Widgets/User/WillStrohl/js/jquery.liveQuery.js" type="text/javascript"></script>
+''' [01.00.00] this widget needs to have the following script added in the page header tags <script src="/Resources/Widgets/User/WillStrohl/js/jquery.liveQuery.js" type="text/javascript"></script>
 ''' </remarks>
 ''' <history>
 ''' [Armand Datema] - 20110313 - Created
@@ -44,19 +44,19 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ''' -----------------------------------------------------------------------------
 
 EXAMPLE:
-<object id="wgtecwid" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.ecwid" declare="declare">
+<object id="wgtecwid" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.Store" declare="declare">
 </object>
 
-<object id="wgtecwid" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.ecwid" declare="declare">
-<param name="wrapper" value="#ecwidholder" />
-<param name="StoreId" value="1003" />
-<param name="catCount" value="3" />
-<param name="prodRows" value="3" />
-<param name="prodColumns" value="3" />
-<param name="tableRows" value="10" />
-<param name="listRows" value="10" />
-<param name="categoryView" value="grid" />
-<param name="searchView" value="list" />
+<object id="wgtecwid" codetype="dotnetnuke/client" codebase="WillStrohl.Widgets.Store" declare="declare">
+    <param name="wrapper" value="#ecwidholder" />
+    <param name="StoreId" value="1003" />
+    <param name="catCount" value="3" />
+    <param name="prodRows" value="3" />
+    <param name="prodColumns" value="3" />
+    <param name="tableRows" value="10" />
+    <param name="listRows" value="10" />
+    <param name="categoryView" value="grid" />
+    <param name="searchView" value="list" />
 </object>
 
 */
@@ -70,11 +70,11 @@ EXAMPLE:
 Type.registerNamespace("WillStrohl.Widgets");
 // END: Namespace management
 
-WillStrohl.Widgets.ecwid = function(widget) {
-    WillStrohl.Widgets.ecwid.initializeBase(this, [widget]);
+WillStrohl.Widgets.Store = function(widget) {
+    WillStrohl.Widgets.Store.initializeBase(this, [widget]);
 }
 
-WillStrohl.Widgets.ecwid.prototype =
+WillStrohl.Widgets.Store.prototype =
 {
     // BEGIN: render
     render: function() {
@@ -169,7 +169,7 @@ WillStrohl.Widgets.ecwid.prototype =
     }
     // END: render
 }
-WillStrohl.Widgets.ecwid.inheritsFrom(DotNetNuke.UI.WebControls.Widgets.BaseWidget);
-WillStrohl.Widgets.ecwid.registerClass("WillStrohl.Widgets.ecwid", DotNetNuke.UI.WebControls.Widgets.BaseWidget);
-DotNetNuke.UI.WebControls.Widgets.renderWidgetType("WillStrohl.Widgets.ecwid");
+WillStrohl.Widgets.Store.inheritsFrom(DotNetNuke.UI.WebControls.Widgets.BaseWidget);
+WillStrohl.Widgets.Store.registerClass("WillStrohl.Widgets.Store", DotNetNuke.UI.WebControls.Widgets.BaseWidget);
+DotNetNuke.UI.WebControls.Widgets.renderWidgetType("WillStrohl.Widgets.Store");
 // END: ecwid class
