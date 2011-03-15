@@ -81,6 +81,7 @@ WillStrohl.Widgets.Facebook.prototype = {
             var ogImage = '';
             var ogSiteName = '';
             var fbAdmins = '';
+            var fbAppId = '';
             var ogDescription = jQuery('meta[name=\'description\']').attr('content');
             var params = {};
 
@@ -99,6 +100,7 @@ WillStrohl.Widgets.Facebook.prototype = {
                         case "ogimage": ogImage = paramValue; break;
                         case "ogsitename": ogSiteName = paramValue; break;
                         case "fbadmins": fbAdmins = paramValue; break;
+                        case "fbappid": fbAppId = paramValue; break;
                         case "ogdescription": ogDescription = paramValue; break;
                         case "plugin": plugin = paramValue; break;
                         default: params[paramName] = paramValue; break;
@@ -112,6 +114,7 @@ WillStrohl.Widgets.Facebook.prototype = {
             if (ogImage != '') jQuery('head').append('<meta property="og:image" content="' + ogImage + '"/>');
             if (ogSiteName != '') jQuery('head').append('<meta property="og:site_name" content="' + ogSiteName + '"/>');
             if (fbAdmins != '') jQuery('head').append('<meta property="fb:admins" content="' + fbAdmins + '"/>');
+            if (fbAppId != '') jQuery('head').append('<meta property="fb:app_id" content="' + fbAdmins + '"/>');
             if (ogDescription != '') jQuery('head').append('<meta property="og:description" content="' + ogDescription + '"/>');
 
             // Replace widget declaration with XFBML
