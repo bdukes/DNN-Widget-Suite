@@ -3,7 +3,7 @@
 echo.
 echo Setting up
 echo.
-set widgetsuiteversion=01.02.00
+set widgetsuiteversion=01.03.00
 if exist packages\output\*.zip del packages\output\*.zip
 
 echo.
