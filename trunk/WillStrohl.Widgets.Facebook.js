@@ -118,7 +118,11 @@ WillStrohl.Widgets.Facebook.prototype = {
             if (ogDescription != '' && jQuery('meta[property=\'og:description\']').length == 0) jQuery('head').append('<meta property="og:description" content="' + ogDescription + '"/>');
 
             // Replace widget declaration with XFBML
-            $(widget).replaceWith($("<fb:" + plugin + " />").attr(params));
+            if (plugin == 'comments' || plugin == 'login-button' || plugin == 'live-stream' && $('#fb-root').length < 1) {
+                $(widget).replaceWith($("<div id=\"fb-root\"></div><fb:" + plugin + " />").attr(params));
+            } else {
+                $(widget).replaceWith($("<fb:" + plugin + " />").attr(params));
+            }
         })(jQuery);
     }
     // END: render
