@@ -1,4 +1,4 @@
-Project - Widget Suite for DotNetNuke<br />
+Project - Widget Suite for DotNetNuke (http://dnnwidgets.com)<br />
 Project Contributors - Will Strohl (http://www.WillStrohl.com), Mark Allan (http://www.dnngarden.com), Armand Datema (http://www.schwingsoft.com)<br />
 Copyright (c) 2009-2011, Will Strohl<br />
 All rights reserved.<br /><br />
