@@ -93,6 +93,10 @@ WillStrohl.Widgets.Store.prototype =
             var categoryView = "grid";
             var searchView = "list";
 
+            // Needed parameters
+            var views = "views=grid(" + prodRows + "," + prodColumns + ") list(" + listRows + ") table(" + tableRows + ")";
+            var storeUrl = "http://app.ecwid.com/script.js?" + StoreId;            
+
             // Parse parameters
             $(widget).children().each(function() {
                 if (this.name && this.value) {
@@ -138,32 +142,18 @@ WillStrohl.Widgets.Store.prototype =
             window.ecwid_script_defer = true;
 
             // Append a named holder to the wrapper
-            jQuery("<div id='ecwid'></div>").appendTo(jQuery(wrapper));
+            jQuery('<div id="ProdOuter"><div id="ProdCategories"></div><div id="ProdProducts"></div></div>').appendTo(wrapper);
 
-            // Check if plugin is allready loaded
-            if (typeof xAddWidget != 'undefined') {
-                // Plugin allready loaded no need to load script just call the plugin
-                xProductBrowser("categoriesPerRow=" + parseInt(catCount), "views=grid(" + parseInt(prodRows) + "," + parseInt(prodColumns) + ") list(" + parseInt(listRows) + ") table(" + parseInt(tableRows) + ")", "categoryView=" + categoryView, "searchView=" + searchView, "style=");
-            } else {
-                // Plugin not loaded so first load the plugin and then call it
-                jQuery.getScript("http://app.ecwid.com/script.js?" + StoreId, function() {
-                    xProductBrowser("categoriesPerRow=" + parseInt(catCount), "views=grid(" + parseInt(prodRows) + "," + parseInt(prodColumns) + ") list(" + parseInt(listRows) + ") table(" + parseInt(tableRows) + ")", "categoryView=" + categoryView, "searchView=" + searchView, "style=");
-                    // delay the JavaScript loading a bit so the liveQuery plugin can pick up the change
-                    setInterval(function() {
-                        $('.ecwid').attr('works', 'ok');
-                    }, 100);
-                });
-            }
+            // Append script element
+            var script = document.createElement("script");
+            script.setAttribute("src", storeUrl);
+            script.charset = "utf-8";
+            script.setAttribute("type", "text/javascript");
+            document.getElementById("ProdOuter").appendChild(script);
 
-            // Catch the ajax loaded html and add it to the appended holder
-            $('.ecwid').livequery(function() {
-                $(this).appendTo("#ecwid");
-            });
-
-            // Catch the popup layer and add it to the body instead of the holder 
-            $('.ecwid-popup').livequery(function() {
-                $(this).appendTo("body");
-            });
+            // Call the new script
+            window._xnext_initialization_scripts = [{ widgetType: 'Categories', id: 'ProdCategories', arg: [] },
+            { widgetType: 'ProductBrowser', id: 'ProdProducts', arg: ["itemsPerRow=" + catCount, "itemsPerPage=9", "searchResultsItemsPerPage=" + listRows, views, "showContactUs=yes"]}];
 
         })(jQuery);
     }
