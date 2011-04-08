@@ -1,0 +1,10 @@
+<p>This release includes the following:</p>
+<ul>
+	<li>Bug Fix: Store Widget required an update to be compatible with the store provider update</li>
+</ul>
+<br />
+<p>Contributors of this open source and free project, include: 
+<a href="http://www.willstrohl.com" target="_blank">Will Strohl (a.k.a hismightiness)</a>, 
+<a href="http://www.dnngarden.com" target="_blank">Mark Allan (a.k.a MarkXA)</a>, and 
+<a href="http://www.schwingsoft.com/" target="_blank">Armand Datema (a.k.a nokiko)</a><br /><br />
+For support, questions, or suggestions, please use the <a href="http://dnnwidgets.com" target="_blank">Widget Suite for DotNetNuke</a> website.</p>
