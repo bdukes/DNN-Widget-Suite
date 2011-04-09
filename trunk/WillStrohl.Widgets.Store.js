@@ -138,6 +138,9 @@ WillStrohl.Widgets.Store.prototype =
             // Get widget location
             var pageHost = document.location.host;
 
+            // remove the <object> from DOM since that is not needed anymore
+            jQuery(widget).remove();              
+
             // defer script for dom manipulation
             window.ecwid_script_defer = true;
 

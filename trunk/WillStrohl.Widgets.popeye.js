@@ -141,7 +141,10 @@ WillStrohl.Widgets.popeye.prototype =
                 duration: parseInt(duration),
                 opacity: opacity,
                 easing: easing
-            }            
+            }
+
+            // remove the <object> from DOM since that is not needed anymore
+            jQuery(widget).remove();                      
          
             // Call script
             jQuery.getScript($dnn.baseResourcesUrl +

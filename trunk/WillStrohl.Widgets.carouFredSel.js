@@ -151,6 +151,8 @@ WillStrohl.Widgets.carouFredSel.prototype =
 
             }
 
+            // remove the <object> from DOM since that is not needed anymore
+            jQuery(widget).remove();
 
             jQuery.getScript($dnn.baseResourcesUrl +
                     "Widgets/User/WillStrohl/js/jquery.carouFredSel-2.5.4-packed.js", function() {
